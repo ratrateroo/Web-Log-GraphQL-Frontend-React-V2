@@ -4,20 +4,14 @@ import './UserItem.css';
 
 const UserItem = props => {
    return (
-      <li className="user-item">
-         <div className="user-item__content">
-            <div>
+      <li className="o-user-list__item">
+         <div className="c-user">
+            <div className="c-user__avatar">
                <img src={props.image} alt={props.name} />
             </div>
 
-            <div className="user-item__info">
-               <h2>{props.name}</h2>
-               <h3>
-                  {props.blogCount} {props.blogCount === 1 ? 'Blog' : 'Blogs'}
-               </h3>
-               <h3>
-                  {props.friendCount} {props.friendCount === 1 ? 'Friend' : 'Friends'}
-               </h3>
+            <div className="c-user__info">
+               <h1 className="c-user__fullname">{props.name}</h1>
             </div>
          </div>
       </li>
