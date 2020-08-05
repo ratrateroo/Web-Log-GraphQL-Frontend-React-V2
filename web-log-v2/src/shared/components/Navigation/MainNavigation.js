@@ -1,12 +1,12 @@
 import React from 'react';
 
-import './MainHeader.css';
+import MainHeader from './MainHeader';
+import './MainNavigation.css';
 
-const MainHeader = props => {
+const MainNavigation = props => {
    return (
-      <header className="o-header">
-         {props.children}
-         {/* <nav className="c-navigation">
+      <MainHeader>
+         <nav className="c-navigation">
             <div className="c-main-navigation">
                <ul className="c-main-navigation__items">
                   <li className="c-main-navigation__item">
@@ -40,9 +40,9 @@ const MainHeader = props => {
                   </li>
                </ul>
             </div>
-         </nav> */}
-      </header>
+         </nav>
+      </MainHeader>
    );
 };
 
-export default MainHeader;
+export default MainNavigation;
