@@ -7,17 +7,17 @@ const NavLinks = props => {
    return (
       <ul className="c-default-navigation__items">
          <li className="c-default-navigation__item">
-            <a href="../Blogs/Blogs.html" className="c-default-navigation__link">
+            {/* <a href="../Blogs/Blogs.html" className="c-default-navigation__link">
                Blogs
-            </a>
+            </a> */}
             <NavLink to="/u1/blogs" className="c-default-navigation__link" exact>
                Blogs
             </NavLink>
          </li>
          <li className="c-default-navigation__">
-            <a href="../User List/User List.html" className="c-default-navigation__link">
+            {/* <a href="../User List/User List.html" className="c-default-navigation__link">
                Users
-            </a>
+            </a> */}
             <NavLink to="/" className="c-default-navigation__link" exact>
                Users
             </NavLink>

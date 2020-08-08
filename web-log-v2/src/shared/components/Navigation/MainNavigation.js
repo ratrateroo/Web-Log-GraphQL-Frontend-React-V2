@@ -1,10 +1,9 @@
 import React from 'react';
 
 import MainHeader from './MainHeader';
-import NavLinks from './DefaultNavLinks';
-import './MainNavigation.css';
 import DefaultNavigation from './DefaultNavigation';
 import UserNavigation from './UserNavigation';
+import './MainNavigation.css';
 
 const MainNavigation = props => {
    return (

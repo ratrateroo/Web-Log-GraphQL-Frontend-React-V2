@@ -7,7 +7,7 @@ const MainBody = props => {
       <main className="o-main-area">
          <section className="o-section-container">
             <div className="o-page-heading">
-               <h1 className="c-page-heading">User Sign Up</h1>
+               <h1 className="c-page-heading">{props.title}</h1>
             </div>
 
             <div class="o-page-body">{props.children}</div>

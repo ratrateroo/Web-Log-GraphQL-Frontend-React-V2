@@ -1,8 +1,8 @@
 import React from 'react';
 
 import UsersList from '../components/UsersList';
-
-const Users = () => {
+import MainBody from '../../shared/components/UIElements/MainBody';
+const Users = props => {
    const USERS = [
       {
          id: 'u1',
@@ -14,7 +14,11 @@ const Users = () => {
       },
    ];
 
-   return <UsersList items={USERS} />;
+   return (
+      <MainBody title={props.title}>
+         <UsersList items={USERS} />
+      </MainBody>
+   );
 };
 
 export default Users;

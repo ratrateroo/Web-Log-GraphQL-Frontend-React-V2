@@ -1,6 +1,5 @@
 import React from 'react';
 
-import MainHeader from './MainHeader';
 import DefaultNavLinks from './DefaultNavLinks';
 import './DefaultNavigation.css';
 
