@@ -1,0 +1,10 @@
+.c-default-navigation__item {
+    margin-right: 1rem;
+}
+
+.c-default-navigation__items {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 100%;
+}

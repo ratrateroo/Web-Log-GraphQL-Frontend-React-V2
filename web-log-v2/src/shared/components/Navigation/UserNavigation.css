@@ -1,0 +1,25 @@
+
+
+.c-user-navigation {
+	height: 100%;
+	width: 50%;
+	overflow: hidden;
+}
+
+.c-user-navigation__items {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: 100%;
+}
+
+.c-user-navigation__item {
+	margin-left: 1rem;
+}
+
+.c-default-navigation__link {
+	color: white;
+}
+.c-user-navigation__link {
+	color: white;
+}
