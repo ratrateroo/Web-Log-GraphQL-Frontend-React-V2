@@ -10,7 +10,7 @@ const NavLinks = props => {
             {/* <a href="../Blogs/Blogs.html" className="c-default-navigation__link">
                Blogs
             </a> */}
-            <NavLink to="/u1/blogs" className="c-default-navigation__link" exact>
+            <NavLink to="/blogs" className="c-default-navigation__link" exact>
                Blogs
             </NavLink>
          </li>

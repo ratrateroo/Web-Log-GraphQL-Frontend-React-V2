@@ -14,7 +14,7 @@ const BlogList = props => {
 
    return (
       <ul className="o-blog-list">
-         {props.items.map(user => (
+         {props.items.map(blog => (
             <BlogItem
                key={blog.id}
                id={blog.id}

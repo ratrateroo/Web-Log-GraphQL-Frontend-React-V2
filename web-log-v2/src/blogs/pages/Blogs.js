@@ -2,7 +2,7 @@ import React from 'react';
 
 import BlogList from '../components/BlogList';
 import MainBody from '../../shared/components/UIElements/MainBody';
-const Blogs = () => {
+const Blogs = props => {
    const BLOGS = [
       {
          id: 'b1',
