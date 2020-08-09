@@ -1,8 +1,8 @@
 import React from 'react';
 
-import fromParts from '../components/BlogList';
+import BlogList from '../components/BlogList';
 import MainBody from '../../shared/components/UIElements/MainBody';
-const NewBlog = () => {
+const Blogs = () => {
    const BLOGS = [
       {
          id: 'b1',
@@ -24,4 +24,4 @@ const NewBlog = () => {
    );
 };
 
-export default NewBlog;
+export default Blogs;
