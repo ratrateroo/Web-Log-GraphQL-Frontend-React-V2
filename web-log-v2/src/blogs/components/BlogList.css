@@ -1,0 +1,6 @@
+.o-blog-list {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	flex-wrap: wrap;
+}
