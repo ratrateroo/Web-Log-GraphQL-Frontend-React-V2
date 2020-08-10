@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import Users from './user/pages/Users';
+import UserProfile from './user/pages/UserProfile';
 import Blogs from './blogs/pages/Blogs';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 
@@ -16,6 +17,10 @@ const App = () => {
 
             <Route path="/blogs" exact>
                <Blogs title="Blogs" />
+            </Route>
+
+            <Route path="/:userId/profile" exact>
+               <UserProfile title="User Profile" />
             </Route>
 
             <Redirect to="/" />
