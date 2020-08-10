@@ -11,10 +11,18 @@
 	height: 300px;
 	width: 300px;
 	border-radius: 50%;
-	background-image: url('../Images/ChloeAvatar.jpg');
+	/* background-image: url('../Images/ChloeAvatar.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position: center; */
+}
+
+.c-user-profile__image-pic {
+	display: block;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 
 .c-user-profile__info {

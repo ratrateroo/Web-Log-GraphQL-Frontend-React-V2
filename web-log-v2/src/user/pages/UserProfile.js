@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import MainBody from '../../shared/components/UIElements/MainBody';
+import UserProfileInfo from '../components/UserProfileInfo';
 
 const UserProfile = props => {
    const USERS = [
@@ -32,10 +33,18 @@ const UserProfile = props => {
    ];
 
    const userId = useParams.userId;
-
+   const loadedUser = USERS.filter(user => user.id === userId);
+   console.log(loadedUser);
    return (
       <MainBody title={props.title}>
-         <UserProfileInfo items={USERS} />
+         <UserProfileInfo
+            key={loadedUser[id]}
+            id={loadedUser[id]}
+            image={loadedUser[image]}
+            name={loadedUser[name]}
+            blogCount={loadedUser[blogs]}
+            friendCount={loadedUser[friends]}
+         />
       </MainBody>
    );
 };
