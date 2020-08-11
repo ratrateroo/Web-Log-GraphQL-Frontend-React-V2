@@ -20,8 +20,8 @@ const UserProfileInfo = props => {
          <div className="c-user-profile__info">
             <h2 className="c-user-profile__info__fullname">{props.name}</h2>
             <ul className="c-user-profile__info__detail-list">
-               <li className="c-user-profile__info__detail-item">{props.blogs}</li>
-               <li className="c-user-profile__info__detail-item">{props.friends}</li>
+               <li className="c-user-profile__info__detail-item">Blogs {props.blogs}</li>
+               <li className="c-user-profile__info__detail-item">Friends {props.friends}</li>
             </ul>
          </div>
       </div>

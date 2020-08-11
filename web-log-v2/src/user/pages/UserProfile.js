@@ -32,18 +32,21 @@ const UserProfile = props => {
       },
    ];
 
-   const userId = useParams.userId;
+   const userId = useParams().userId;
    const loadedUser = USERS.filter(user => user.id === userId);
-   console.log(loadedUser);
+   // const loadedUser = USERS.find(user => user.id === userId);
+
    return (
       <MainBody title={props.title}>
+         {console.log(loadedUser)}
          <UserProfileInfo
-            key={loadedUser[id]}
-            id={loadedUser[id]}
-            image={loadedUser[image]}
-            name={loadedUser[name]}
-            blogCount={loadedUser[blogs]}
-            friendCount={loadedUser[friends]}
+            // key={loadedUser.id}
+            // uid={id}
+            // image={image}
+            // name={name}
+            // blogCount={blogs}
+            // friendCount={friends}
+            {...loadedUser[0]}
          />
       </MainBody>
    );
