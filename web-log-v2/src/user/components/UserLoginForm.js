@@ -3,23 +3,15 @@ import React from 'react';
 import './UserLoginForm.css';
 
 const UserLoginForm = props => {
-   // if (props.user.length === 0) {
-   //    return (
-   //       <div>
-   //          <h2>User Profile Unavailable!</h2>
-   //       </div>
-   //    );
-   // }
-
    return (
-      <div class="c-form">
-         <form action="" class="c-form__body">
-            <div class="c-form-input">
-               <label class="c-form-input__label" for="username">
+      <div className="c-form">
+         <form action="" className="c-form__body">
+            <div className="c-form-input">
+               <label className="c-form-input__label" for="username">
                   Username:
                </label>
                <input
-                  class="c-form-input__data"
+                  className="c-form-input__data"
                   type="text"
                   id="username"
                   name="username"
@@ -27,12 +19,12 @@ const UserLoginForm = props => {
                />
             </div>
 
-            <div class="c-form-input">
-               <label class="c-form-input__label" for="password">
+            <div className="c-form-input">
+               <label className="c-form-input__label" for="password">
                   Password:
                </label>
                <input
-                  class="c-form-input__data"
+                  className="c-form-input__data"
                   type="password"
                   id="password"
                   name="password"
@@ -40,8 +32,8 @@ const UserLoginForm = props => {
                />
             </div>
 
-            <div class="c-form-button">
-               <button class="c-form-button__submit" type="submit" class="button">
+            <div className="c-form-button">
+               <button className="c-form-button__submit" type="submit">
                   Log In
                </button>
             </div>

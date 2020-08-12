@@ -2,8 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import Users from './user/pages/Users';
-import UserProfile from './user/pages/UserProfile';
 import Blogs from './blogs/pages/Blogs';
+import UserProfile from './user/pages/UserProfile';
+
+import UserLogin from './user/pages/UserLogin';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 
 const App = () => {
