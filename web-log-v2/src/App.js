@@ -23,6 +23,10 @@ const App = () => {
                <UserProfile title="User Profile" />
             </Route>
 
+            <Route path="/login" exact>
+               <UserLogin title="User Login" />
+            </Route>
+
             <Redirect to="/" />
          </Switch>
       </Router>
