@@ -6,7 +6,7 @@ import Blogs from './blogs/pages/Blogs';
 import UserProfile from './user/pages/UserProfile';
 
 import UserLogin from './user/pages/UserLogin';
-import UserSignup from './user/pages/UserLogin';
+import UserSignup from './user/pages/UserSignup';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 
 const App = () => {
