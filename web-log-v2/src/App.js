@@ -6,6 +6,7 @@ import Blogs from './blogs/pages/Blogs';
 import UserProfile from './user/pages/UserProfile';
 
 import UserLogin from './user/pages/UserLogin';
+import UserSignup from './user/pages/UserLogin';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 
 const App = () => {
@@ -27,6 +28,10 @@ const App = () => {
 
             <Route path="/login" exact>
                <UserLogin title="User Login" />
+            </Route>
+
+            <Route path="/signup" exact>
+               <UserSignup title="User Signup" />
             </Route>
 
             <Redirect to="/" />
