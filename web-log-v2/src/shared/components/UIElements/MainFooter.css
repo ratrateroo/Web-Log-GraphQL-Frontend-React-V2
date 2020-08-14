@@ -1,6 +1,6 @@
 .footer {
     grid-area: footer;
-    background-color: var(--Midnight);
+    background-color: var(--English-Green);
     color: white;
     height: 2rem;
     display: flex;
@@ -13,4 +13,4 @@
     line-height: 2rem;
     text-align: center;
     outline:none;
-}
+} 
