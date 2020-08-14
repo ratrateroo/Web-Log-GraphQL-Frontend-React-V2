@@ -8,6 +8,7 @@ import UserProfile from './user/pages/UserProfile';
 import UserLogin from './user/pages/UserLogin';
 import UserSignup from './user/pages/UserSignup';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
+import MainFooter from './shared/components/UIElements/MainFooter';
 
 const App = () => {
    return (
@@ -36,6 +37,7 @@ const App = () => {
 
             <Redirect to="/" />
          </Switch>
+         <MainFooter />
       </Router>
    );
 };

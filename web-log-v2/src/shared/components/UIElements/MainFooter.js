@@ -4,7 +4,7 @@ import './MainFooter.css';
 
 const MainFooter = props => {
    return (
-      <footer class="footer">
+      <footer className="footer">
          <p>Welcome to the Blog</p>
       </footer>
    );
