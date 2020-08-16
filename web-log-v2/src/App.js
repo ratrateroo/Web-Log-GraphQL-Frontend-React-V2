@@ -24,7 +24,7 @@ const App = () => {
                <Blogs title="Blogs" />
             </Route>
 
-            <Route path="/blogs/:bid" exact>
+            <Route path="/blogs/:blogId" exact>
                <Blog title="<Username>'s Blog" />
             </Route>
 

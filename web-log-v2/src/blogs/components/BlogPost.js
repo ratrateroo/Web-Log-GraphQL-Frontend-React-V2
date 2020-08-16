@@ -6,45 +6,12 @@ const BlogPost = props => {
    return (
       <div className="c-blog">
          <div className="c-blog__header">
-            <h1 className="c-blog__title">
-               Once upon a time in Paris. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Nisi corrupti, totam nulla minima ad esse! Fuga excepturi, aliquid at, perferendis
-               rem sit hic, soluta deserunt tenetur odit ea consequuntur dolorem.
-            </h1>
-            <h2 className="c-blog__author">Aurora Barnuts</h2>
+            <h1 className="c-blog__title">{props.title}</h1>
+            <h2 className="c-blog__author">{props.author}</h2>
          </div>
          <div className="c-blog__body">
             <div className="c-blog__content">
-               <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non corporis id nesciunt
-                  amet molestias quos, doloremque animi eaque asperiores harum dicta ex autem
-                  laudantium, quis cupiditate soluta? Voluptate, nostrum tempora. Optio natus rem,
-                  nobis sunt, dolor reprehenderit, commodi recusandae doloremque maxime hic
-                  aspernatur! Quos quas voluptatem odio fugiat. Accusamus totam, mollitia harum ad
-                  omnis maiores expedita pariatur perspiciatis cumque nisi! Veniam, iure eligendi
-                  natus beatae vitae molestias libero ad odio sequi nobis quidem tenetur eos, sint
-                  quam in saepe corporis, sit consequuntur placeat. Velit nihil sunt possimus
-                  temporibus quam non! Quam, assumenda omnis corporis soluta, neque at animi laborum
-                  porro aliquid fugit quidem vel nisi sed. Vitae ducimus doloremque quidem magnam
-                  eligendi earum beatae illum, natus omnis sequi maxime repudiandae! Culpa dolor qui
-                  repellendus cum voluptatum voluptas. Amet repudiandae inventore et eius repellat
-                  nobis obcaecati non, minima id quam beatae ullam omnis laudantium eum blanditiis,
-                  eos animi, laborum modi magnam! Consequatur cum quae similique nostrum, debitis
-                  cupiditate sunt minima nesciunt reprehenderit corrupti incidunt quas doloremque,
-                  totam ut perspiciatis. Dolorem incidunt sapiente a error dolor deserunt? Illum
-                  obcaecati laborum totam aliquam? Nobis veritatis architecto optio, dicta
-                  recusandae amet quas, provident minima dolores omnis quod distinctio odit quasi.
-                  Aliquam odio accusantium porro harum ullam? Ad, commodi officia impedit aperiam
-                  optio ratione magnam? Maiores magnam vero rem vel aliquam velit et obcaecati aut
-                  impedit. Sunt magni esse architecto velit? Sint at quisquam ducimus, enim quos
-                  molestiae. Tempore beatae numquam placeat magnam quos tenetur. Excepturi aperiam
-                  molestiae fugiat? Exercitationem quis recusandae numquam perspiciatis cupiditate
-                  veniam inventore? Eveniet vitae consequatur ducimus, earum aperiam consectetur,
-                  dolor odio sint, ut molestias ea deserunt tempore? Quibusdam, placeat et. Sit rem
-                  pariatur facere velit atque enim, asperiores ex, odio deleniti assumenda
-                  architecto, quaerat eveniet accusantium officiis est non aut recusandae fugit
-                  culpa nisi aspernatur nulla praesentium? Itaque, assumenda ullam!
-               </p>
+               <p>{props.content}</p>
             </div>
 
             <div className="c-blog-details">
@@ -55,7 +22,7 @@ const BlogPost = props => {
                      </svg>
                   </div>
                   <div className="c-blog-details__date-created-date">
-                     <p>January 14, 2012</p>
+                     <p>{props.datecreated}</p>
                   </div>
                </div>
                <div className="c-blog-details__date-edited">
@@ -65,7 +32,7 @@ const BlogPost = props => {
                      </svg>
                   </div>
                   <div className="c-blog-details__date-edited-date">
-                     <p>January 14, 2012</p>
+                     <p>{props.dateedited}</p>
                   </div>
                </div>
 
@@ -76,7 +43,7 @@ const BlogPost = props => {
                      </svg>
                   </div>
                   <div className="c-blog-details__likes-count">
-                     <p>100</p>
+                     <p>{props.likes}</p>
                   </div>
                </div>
 
@@ -87,7 +54,7 @@ const BlogPost = props => {
                      </svg>
                   </div>
                   <div className="c-blog-details__comments-count">
-                     <p>100</p>
+                     <p>{props.comments}</p>
                   </div>
                </div>
             </div>
