@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import Users from './user/pages/Users';
 import Blogs from './blogs/pages/Blogs';
+import Blog from './blogs/pages/Blog';
 import UserProfile from './user/pages/UserProfile';
 
 import UserLogin from './user/pages/UserLogin';
@@ -21,6 +22,10 @@ const App = () => {
 
             <Route path="/blogs" exact>
                <Blogs title="Blogs" />
+            </Route>
+
+            <Route path="/blogs/:bid" exact>
+               <Blog title="<Username>'s Blog" />
             </Route>
 
             <Route path="/:userId/profile" exact>
