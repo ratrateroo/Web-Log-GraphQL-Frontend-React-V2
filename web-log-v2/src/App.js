@@ -7,6 +7,8 @@ import Blog from './blogs/pages/Blog';
 import CreateBlog from './blogs/pages/CreateBlog';
 import UserProfile from './user/pages/UserProfile';
 
+import UserFriendList from './user/pages/UserFriendList';
+
 import UserLogin from './user/pages/UserLogin';
 import UserSignup from './user/pages/UserSignup';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
@@ -23,6 +25,10 @@ const App = () => {
 
             <Route path="/:userId/profile" exact>
                <UserProfile title="User Profile" />
+            </Route>
+
+            <Route path="/:userId/friends" exact>
+               <UserFriendList title="User Profile" />
             </Route>
 
             <Route path="/login" exact>
