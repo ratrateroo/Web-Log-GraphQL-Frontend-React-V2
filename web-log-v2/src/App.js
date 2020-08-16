@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Users from './user/pages/Users';
 import Blogs from './blogs/pages/Blogs';
 import Blog from './blogs/pages/Blog';
+import CreateBlog from './blogs/pages/CreateBlog';
 import UserProfile from './user/pages/UserProfile';
 
 import UserLogin from './user/pages/UserLogin';
@@ -20,14 +21,6 @@ const App = () => {
                <Users title="Users" />
             </Route>
 
-            <Route path="/blogs" exact>
-               <Blogs title="Blogs" />
-            </Route>
-
-            <Route path="/blogs/:blogId" exact>
-               <Blog title="<Username>'s Blog" />
-            </Route>
-
             <Route path="/:userId/profile" exact>
                <UserProfile title="User Profile" />
             </Route>
@@ -38,6 +31,18 @@ const App = () => {
 
             <Route path="/signup" exact>
                <UserSignup title="User Signup" />
+            </Route>
+
+            <Route path="/blogs" exact>
+               <Blogs title="Blogs" />
+            </Route>
+
+            <Route path="/blogs/new" exact>
+               <CreateBlog title="Create Blog" />
+            </Route>
+
+            <Route path="/blogs/:blogId" exact>
+               <Blog title="<Username>'s Blog" />
             </Route>
 
             <Redirect to="/" />
