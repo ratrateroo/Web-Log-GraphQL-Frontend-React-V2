@@ -148,7 +148,7 @@ const UserBlogList = props => {
             </a>
          </div>
          <div className="c-form-button">
-            <button className="c-form-button__createnew" type="submit" className="button">
+            <button className="c-form-button__createnew" type="submit">
                Create New
             </button>
          </div>
