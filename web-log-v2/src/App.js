@@ -5,6 +5,7 @@ import Users from './user/pages/Users';
 import Blogs from './blogs/pages/Blogs';
 import Blog from './blogs/pages/Blog';
 import CreateBlog from './blogs/pages/CreateBlog';
+import UserBlogs from './user/pages/UserBlogs';
 import UserProfile from './user/pages/UserProfile';
 
 import UserFriendList from './user/pages/UserFriendList';
@@ -21,6 +22,10 @@ const App = () => {
          <Switch>
             <Route path="/" exact>
                <Users title="Users" />
+            </Route>
+
+            <Route path="/:userId/blogs" exact>
+               <UserBlogs title="User Profile" />
             </Route>
 
             <Route path="/:userId/profile" exact>
