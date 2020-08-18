@@ -46,3 +46,11 @@
 	color: white;
 	height: 2rem;
 }
+
+.c-form-button__success {
+	background-color: var(--Deep-Space-Sparcle);
+	border: none;
+	color: white;
+	height: 2rem;
+	width: 200px;
+}
