@@ -71,8 +71,8 @@ const UserBlogList = props => {
                </div>
                <div role="gridcell" className="c-blog-row__cell">
                   <div className="c-action-button">
-                     <div className="c-action-button__edit">Edit</div>
-                     <div className="c-action-button__delete">Delete</div>
+                     <Button edit>Edit</Button>
+                     <Button delete>Delete</Button>
                   </div>
                </div>
             </a>
@@ -95,8 +95,8 @@ const UserBlogList = props => {
                </div>
                <div role="gridcell" className="c-blog-row__cell">
                   <div className="c-action-button">
-                     <div className="c-action-button__edit">Edit</div>
-                     <div className="c-action-button__delete">Delete</div>
+                     <Button edit>Edit</Button>
+                     <Button delete>Delete</Button>
                   </div>
                </div>
             </a>
@@ -119,8 +119,8 @@ const UserBlogList = props => {
                </div>
                <div role="gridcell" className="c-blog-row__cell">
                   <div className="c-action-button">
-                     <div className="c-action-button__edit">Edit</div>
-                     <div className="c-action-button__delete">Delete</div>
+                     <Button edit>Edit</Button>
+                     <Button delete>Delete</Button>
                   </div>
                </div>
             </a>
@@ -142,16 +142,16 @@ const UserBlogList = props => {
                </div>
                <div role="gridcell" className="c-blog-row__cell">
                   <div className="c-action-button">
-                     <div className="c-action-button__edit">Edit</div>
-                     <div className="c-action-button__delete">Delete</div>
+                     <Button edit>Edit</Button>
+                     <Button delete>Delete</Button>
                   </div>
                </div>
             </a>
          </div>
          <div className="c-form-button">
-            <button className="c-form-button__createnew" type="submit">
+            <Button submit type="submit">
                Create New
-            </button>
+            </Button>
          </div>
       </div>
    );
