@@ -5,16 +5,16 @@ import './Button.css';
 
 const Button = props => {
    if (props.href) {
-      return <a className=".c-form-button__success">{props.children}</a>;
+      return <a className=".c-form-button__link">{props.children}</a>;
    }
    if (props.to) {
       return (
          <Link
-            to={props.to}
-            exact={props.exact}
-            className={`button button--${props.size || 'default'} ${
-               props.inverse && 'button--inverse'
-            } ${props.danger && 'button--danger'}`}
+         // to={props.to}
+         // exact={props.exact}
+         // className={`button button--${props.size || 'default'} ${
+         //    props.inverse && 'button--inverse'
+         // } ${props.danger && 'button--danger'}`}
          >
             {props.children}
          </Link>
@@ -22,12 +22,14 @@ const Button = props => {
    }
    return (
       <button
-         className={`button button--${props.size || 'default'} ${
-            props.inverse && 'button--inverse'
-         } ${props.danger && 'button--danger'}`}
-         type={props.type}
-         onClick={props.onClick}
-         disabled={props.disabled}
+         // className={`button button--${props.size || 'default'} ${
+         //    props.inverse && 'button--inverse'
+         // } ${props.danger && 'button--danger'}`}
+         // type={props.type}
+         // onClick={props.onClick}
+         // disabled={props.disabled}
+
+         className=".c-form-button__button"
       >
          {props.children}
       </button>
