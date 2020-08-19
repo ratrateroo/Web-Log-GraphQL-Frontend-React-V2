@@ -1,36 +1,34 @@
 /* submit button */
-.c-form-button__button {
+.c-form-button__submit {
 	width: 100%;
 	background-color: var(--Deep-Space-Sparcle);
-	border: none;
+	border: 1px solid gray;
 	color: white;
 	height: 2rem;
+	
 }
 
-.c-action-button {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
-	height: 2rem;
-}
+
 
 /* edit button */
-.c-action-button__edit {
+.c-form-button__edit {
 	background-color: var(--English-Green);
 	color: white;
-	border-radius: 0.5rem;
-	width: 45%;
-	line-height: 1.5rem;
+	border: 1px solid gray;
+	width: 100%;
+	
+	height: 100%;
 }
 /* delete button */
-.c-action-button__delete {
+.c-form-button__delete {
 	background-color: var(--Red-Wine);
 	color: white;
-	border-radius: 0.5rem;
-	width: 45%;
-	line-height: 1.5rem;
+	border: 1px solid gray;
+	width: 100%;
+	
+	height: 100%;
 }
+
 
 
 

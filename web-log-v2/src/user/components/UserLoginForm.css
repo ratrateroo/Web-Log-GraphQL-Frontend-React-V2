@@ -36,10 +36,3 @@
 	margin: 1rem;
 	width: 100%;
 }
-.c-form-button__submit {
-	width: 100%;
-	background-color: var(--Deep-Space-Sparcle);
-	border: none;
-	color: white;
-	height: 2rem;
-}

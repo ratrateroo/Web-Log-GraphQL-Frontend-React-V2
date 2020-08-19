@@ -5,7 +5,7 @@ import './Button.css';
 
 const Button = props => {
    if (props.href) {
-      return <a className=".c-form-button__link">{props.children}</a>;
+      return <a className="c-form-button__link">{props.children}</a>;
    }
    if (props.to) {
       return (
@@ -22,14 +22,11 @@ const Button = props => {
    }
    return (
       <button
-         // className={`button button--${props.size || 'default'} ${
-         //    props.inverse && 'button--inverse'
-         // } ${props.danger && 'button--danger'}`}
-         // type={props.type}
-         // onClick={props.onClick}
-         // disabled={props.disabled}
-
-         className=".c-form-button__button"
+         className={`${props.submit && 'c-form-button__submit'} 
+                     ${props.edit && 'c-form-button__edit'}
+                     ${props.delete && 'c-form-button__delete'}
+                     `}
+         type={props.type}
       >
          {props.children}
       </button>
