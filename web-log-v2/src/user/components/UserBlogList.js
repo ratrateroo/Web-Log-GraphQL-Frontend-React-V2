@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './UserBlogList.css';
+import Button from '../../shared/components/FormElements/Button';
 
 const UserBlogList = props => {
    return (
@@ -46,8 +47,8 @@ const UserBlogList = props => {
                </div>
                <div role="gridcell" className="c-blog-row__cell">
                   <div className="c-action-button">
-                     <div className="c-action-button__edit">Edit</div>
-                     <div className="c-action-button__delete">Delete</div>
+                     <Button edit>Edit</Button>
+                     <Button delete>Delete</Button>
                   </div>
                </div>
             </a>

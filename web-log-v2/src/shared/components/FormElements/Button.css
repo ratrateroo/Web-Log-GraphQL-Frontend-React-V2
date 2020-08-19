@@ -15,8 +15,8 @@
 	background-color: var(--English-Green);
 	color: white;
 	border: 1px solid gray;
-	width: 100%;
-	
+	width: 100%;	
+	font-size: 0.8rem;
 	height: 100%;
 }
 /* delete button */
