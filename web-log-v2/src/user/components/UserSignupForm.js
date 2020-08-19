@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './UserSignupForm.css';
+import Button from '../../shared/components/FormElements/Button';
 
 const UserSignupForm = props => {
    return (
@@ -81,9 +82,9 @@ const UserSignupForm = props => {
             </div>
 
             <div className="c-form-button">
-               <button className="c-form-button__submit" type="submit">
+               <Button submit type="submit">
                   Sign Up
-               </button>
+               </Button>
             </div>
          </form>
       </div>
