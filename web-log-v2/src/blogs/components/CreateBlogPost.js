@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './CreateBlogPost.css';
+import Button from '../../shared/components/FormElements/Button';
 
 const CreateBlogPost = props => {
    return (
@@ -31,9 +32,11 @@ const CreateBlogPost = props => {
                ></textarea>
             </div>
             <div className="c-form-blog__button">
-               <button type="submit" className="c-form-blog__button-save">
-                  Save
-               </button>
+               <div className="c-form-blog__button-holder">
+                  <Button submit type="submit">
+                     Save
+                  </Button>
+               </div>
             </div>
          </form>
       </div>

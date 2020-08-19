@@ -2,6 +2,7 @@ import React from 'react';
 
 import CreateBlogPost from '../components/CreateBlogPost';
 import MainBody from '../../shared/components/UIElements/MainBody';
+
 const CreateBlog = props => {
    const BLOGS = [
       {

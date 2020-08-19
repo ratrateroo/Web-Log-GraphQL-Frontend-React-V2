@@ -43,10 +43,7 @@
 	align-items: flex-end;
 	width: 100%;
 }
-.c-form-blog__button-save {
-	background-color: var(--Deep-Space-Sparcle);
-	border: none;
-	color: white;
-	height: 2rem;
+.c-form-blog__button-holder {
 	width: 200px;
 }
+
