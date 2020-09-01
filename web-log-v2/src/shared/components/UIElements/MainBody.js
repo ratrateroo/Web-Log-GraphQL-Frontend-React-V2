@@ -1,18 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import Button from '../FormElements/Button';
+import Modal from './Modal';
 import './MainBody.css';
 
 const MainBody = props => {
-   return (
-      <main className="o-main-area">
-         <section className="o-section-container">
-            <div className="o-page-heading">
-               <h1 className="c-page-heading">{props.title}</h1>
-            </div>
+   const [showModal, setShowModal] = useState(false);
 
-            <div class="o-page-body">{props.children}</div>
-         </section>
-      </main>
+   const openModalHandler = () => {
+      setShowModal(true);
+   };
+   const closeModalHandler = () => {
+      setShowModal(false);
+   };
+
+   return (
+      <React.Fragment>
+         <Modal
+            show={showModal}
+            onCancel={closeModalHandler}
+            header="Header Part"
+            footer={<Button onClick={closeModalHandler}>Close</Button>}
+         >
+            <div>
+               <h2>Modal</h2>
+            </div>
+         </Modal>
+         <main className="o-main-area">
+            <section className="o-section-container">
+               <div className="o-page-heading">
+                  <Button onClick={openModalHandler}>{props.title}</Button>
+               </div>
+
+               <div class="o-page-body">{props.children}</div>
+            </section>
+         </main>
+      </React.Fragment>
    );
 };
 
