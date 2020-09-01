@@ -33,3 +33,7 @@
 .c-page-heading {
 	color: var(--Cadet-Blue);
 }
+
+.c-page-heading:hover{
+	cursor: pointer;
+}

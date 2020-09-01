@@ -9,7 +9,7 @@
 }
 .c-form-blog__body {
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 	flex-direction: column;
 	align-items: center;
 	height: 100%;
@@ -18,7 +18,7 @@
 .c-form-blog-input {
 	display: flex;
 	justify-content: center;
-	align-items: start;
+	align-items: flex-start;
 	flex-direction: column;
 	width: 100%;
 	margin-bottom: 1rem;

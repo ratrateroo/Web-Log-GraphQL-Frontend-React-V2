@@ -2,7 +2,7 @@
 .o-friend-list {
 	padding: 1rem;
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 }
 .o-friend-list__item {
