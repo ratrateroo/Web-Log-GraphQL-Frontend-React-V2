@@ -2,35 +2,26 @@ import React from 'react';
 
 import './UserLoginForm.css';
 import Button from '../../shared/components/FormElements/Button';
+import Input from '../../shared/components/FormElements/Input';
 const UserLoginForm = props => {
    return (
       <div className="c-form">
          <form action="" className="c-form__body">
-            <div className="c-form-input">
-               <label className="c-form-input__label" for="username">
-                  Username:
-               </label>
-               <input
-                  className="c-form-input__data"
-                  type="text"
-                  id="username"
-                  name="username"
-                  required
-               />
-            </div>
+            <Input
+               element="input"
+               id="username"
+               type="text"
+               placeholder="Enter your username here!"
+               label="Username:"
+            />
 
-            <div className="c-form-input">
-               <label className="c-form-input__label" for="password">
-                  Password:
-               </label>
-               <input
-                  className="c-form-input__data"
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-               />
-            </div>
+            <Input
+               element="input"
+               id="password"
+               type="password"
+               placeholder="Enter your password here!"
+               label="Password:"
+            />
 
             <div className="c-form-button">
                <Button submit type="submit">

@@ -1,0 +1,16 @@
+.c-form-input {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 1rem;
+}
+.c-form-input__label {
+	color: var(--Cadet-Blue);
+	width: 100%;
+}
+.c-form-input__data {
+	height: 1.3rem;
+	width: 100%;
+}
