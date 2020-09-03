@@ -3,6 +3,8 @@ import React from 'react';
 import './UserLoginForm.css';
 import Button from '../../shared/components/FormElements/Button';
 import Input from '../../shared/components/FormElements/Input';
+import { VALIDATOR_REQUIRE } from '../../shared/util/validators';
+
 const UserLoginForm = props => {
    return (
       <div className="c-form">
@@ -13,6 +15,7 @@ const UserLoginForm = props => {
                type="text"
                placeholder="Enter your username here!"
                label="Username:"
+               validators={[VALIDATOR_REQUIRE()]}
                errorText="Please enter a valid username."
             />
 
@@ -22,6 +25,7 @@ const UserLoginForm = props => {
                type="password"
                placeholder="Enter your password here!"
                label="Password:"
+               validators={[VALIDATOR_REQUIRE()]}
                errorText="Please enter a valid password."
             />
 

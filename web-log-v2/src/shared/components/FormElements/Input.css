@@ -13,10 +13,26 @@
 .c-form-input__data {
 	height: 1.3rem;
 	width: 100%;
+	font-size: 0.8rem;
+	
+}
+
+.c-form-input__data:focus {
+	
+	outline: 3px solid var(--Honeydew);
+	
 }
 
 .c-form-input__data--invalid {
 	outline: 1px solid var(--Red-Wine);
 	height: 1.3rem;
 	width: 100%;
+	font-size: 0.8rem;
+	border:none;
+}
+
+.c-form-input__error {
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	color: var(--Red-Wine);
 }
