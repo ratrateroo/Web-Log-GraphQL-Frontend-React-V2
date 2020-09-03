@@ -13,6 +13,7 @@ const UserLoginForm = props => {
                type="text"
                placeholder="Enter your username here!"
                label="Username:"
+               errorText="Please enter a valid username."
             />
 
             <Input
@@ -21,6 +22,7 @@ const UserLoginForm = props => {
                type="password"
                placeholder="Enter your password here!"
                label="Password:"
+               errorText="Please enter a valid password."
             />
 
             <div className="c-form-button">
