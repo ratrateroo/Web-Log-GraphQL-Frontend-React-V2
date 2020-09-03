@@ -51,9 +51,14 @@ const UserLoginForm = () => {
       dispatch({ type: 'INPUT_CHANGE', value: value, isValid: isValid, inputId: id });
    }, []);
 
+   const loginSubmitHandler = event => {
+      event.preventDefault();
+      console.log(formState.inputs);
+   };
+
    return (
       <div className="c-form">
-         <form action="" className="c-form__body">
+         <form action="" className="c-form__body" onSubmit={loginSubmitHandler}>
             <Input
                element="input"
                id="username"

@@ -32,7 +32,7 @@ const MainBody = props => {
                   <Button onClick={openModalHandler}>{props.title}</Button>
                </div>
 
-               <div class="o-page-body">{props.children}</div>
+               <div className="o-page-body">{props.children}</div>
             </section>
          </main>
       </React.Fragment>
