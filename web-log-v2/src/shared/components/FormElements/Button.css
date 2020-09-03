@@ -3,8 +3,20 @@
 	width: 100%;
 	background-color: var(--Deep-Space-Sparcle);
 	border: 1px solid gray;
-	color: white;
+	color: rgb(224, 215, 215);
 	height: 2rem;
+	cursor: pointer;
+	
+}
+
+.c-form-button__submit:disabled {
+	width: 100%;
+	background-color: White;
+	border: 1px solid gray;
+	color: gray;
+	height: 2rem;
+	cursor: pointer;
+	
 	
 }
 
@@ -28,6 +40,8 @@
 	
 	height: 100%;
 }
+
+
 
 
 
