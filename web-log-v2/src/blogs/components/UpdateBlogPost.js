@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import './UpdateBlogPost.css';
@@ -96,9 +96,47 @@ const BLOGS = [
 ];
 
 const UpdateBlogPost = props => {
+   const [isLoading, setIsLoading] = useState(true);
+
    const blogId = useParams().blogId;
 
+   const [formState, inputHandler, setFormData] = useForm(
+      {
+         title: {
+            value: '',
+            isValid: false,
+         },
+         content: {
+            value: '',
+            isValid: false,
+         },
+      },
+      false
+   );
+
    const identifiedBlog = BLOGS.find(b => b.id === blogId);
+
+   useEffect(() => {
+      setFormData(
+         {
+            title: {
+               value: identifiedBlog.title,
+               isValid: false,
+            },
+            content: {
+               value: identifiedBlog.content,
+               isValid: false,
+            },
+         },
+         true
+      );
+      setIsLoading(false);
+   }, [setFormData, identifiedBlog]);
+
+   const updateBlogHandler = event => {
+      event.preventDefault();
+      console.log(formState.inputs);
+   };
 
    if (!identifiedBlog) {
       return (
@@ -108,24 +146,13 @@ const UpdateBlogPost = props => {
       );
    }
 
-   const [formState, inputHandler] = useForm(
-      {
-         title: {
-            value: identifiedBlog.title || '',
-            isValid: true,
-         },
-         content: {
-            value: identifiedBlog.title || '',
-            isValid: true,
-         },
-      },
-      true
-   );
-
-   const updateBlogHandler = event => {
-      event.preventDefault();
-      console.log(formState.inputs);
-   };
+   if (isLoading) {
+      return (
+         <div>
+            <h2>Loading...</h2>
+         </div>
+      );
+   }
 
    return (
       <div className="c-form-blog">
