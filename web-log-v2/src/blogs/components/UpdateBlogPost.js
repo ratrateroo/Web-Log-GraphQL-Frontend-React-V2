@@ -1,10 +1,11 @@
-import React, { useReducer, useCallback } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import './UpdateBlogPost.css';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
+import { useForm } from '../../shared/hooks/form-hook';
 
 const BLOGS = [
    {
@@ -94,57 +95,7 @@ const BLOGS = [
    },
 ];
 
-const formReducer = (state, action) => {
-   switch (action.type) {
-      case 'INPUT_CHANGE':
-         let formIsValid = true;
-         for (const inputId in state.inputs) {
-            if (inputId === action.inputId) {
-               formIsValid = formIsValid && action.isValid;
-            } else {
-               formIsValid = formIsValid && state.inputs[inputId].isValid;
-            }
-         }
-         return {
-            ...state,
-            inputs: {
-               ...state.inputs,
-               [action.inputId]: {
-                  value: action.value,
-                  isValid: action.isValid,
-               },
-            },
-            isValid: formIsValid,
-         };
-      default:
-         return state;
-   }
-};
-
 const UpdateBlogPost = props => {
-   const [formState, dispatch] = useReducer(formReducer, {
-      inputs: {
-         title: {
-            value: '',
-            isValid: false,
-         },
-         content: {
-            value: '',
-            isValid: false,
-         },
-      },
-      isValid: false,
-   });
-
-   const inputHandler = useCallback((id, value, isValid) => {
-      dispatch({ type: 'INPUT_CHANGE', value: value, isValid: isValid, inputId: id });
-   }, []);
-
-   const updateBlogHandler = event => {
-      event.preventDefault();
-      console.log(formState.inputs);
-   };
-
    const blogId = useParams().blogId;
 
    const identifiedBlog = BLOGS.find(b => b.id === blogId);
@@ -156,6 +107,25 @@ const UpdateBlogPost = props => {
          </div>
       );
    }
+
+   const [formState, inputHandler] = useForm(
+      {
+         title: {
+            value: identifiedBlog.title || '',
+            isValid: true,
+         },
+         content: {
+            value: identifiedBlog.title || '',
+            isValid: true,
+         },
+      },
+      true
+   );
+
+   const updateBlogHandler = event => {
+      event.preventDefault();
+      console.log(formState.inputs);
+   };
 
    return (
       <div className="c-form-blog">
@@ -181,8 +151,8 @@ const UpdateBlogPost = props => {
                validators={[VALIDATOR_REQUIRE()]}
                errorText="Please enter a valid title."
                onInput={inputHandler}
-               value={identifiedBlog.title}
-               valid={true}
+               initialValue={formState.inputs.title.value}
+               initialValid={formState.inputs.title.isValid}
             />
 
             {/* <div className="c-form-blog-input">
@@ -204,13 +174,14 @@ const UpdateBlogPost = props => {
                validators={[VALIDATOR_MINLENGTH(5)]}
                errorText="Please enter a valid content with a minimum of 5 characters"
                onInput={inputHandler}
-               value={identifiedBlog.content}
+               initialValue={formState.inputs.content.value}
+               initialValid={formState.inputs.content.isValid}
             />
 
             <div className="c-form-blog__button">
                <div className="c-form-blog__button-holder">
                   <Button submit disabled={!formState.isValid}>
-                     Save
+                     Update
                   </Button>
                </div>
             </div>

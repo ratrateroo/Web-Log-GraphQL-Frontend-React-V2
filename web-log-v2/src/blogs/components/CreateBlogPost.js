@@ -1,39 +1,55 @@
 import React from 'react';
 
 import './CreateBlogPost.css';
+import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
+import { useForm } from '../../shared/hooks/form-hook';
 
 const CreateBlogPost = props => {
+   const [formState, inputHandler] = useForm(
+      {
+         title: {
+            value: '',
+            isValid: true,
+         },
+         content: {
+            value: '',
+            isValid: true,
+         },
+      },
+      false
+   );
+
+   const createBlogHandler = event => {
+      event.preventDefault();
+      console.log(formState.inputs);
+   };
+
    return (
       <div className="c-form-blog">
-         <form action="" className="c-form-blog__body">
-            <div className="c-form-blog-input">
-               <label className="c-form-blog-input__label" for="title">
-                  Title
-               </label>
-               <input
-                  className="c-form-blog-input__title"
-                  type="text"
-                  id="title"
-                  name="title"
-                  required
-               />
-            </div>
+         <form onSubmit={createBlogHandler} className="c-form-blog__body">
+            <Input
+               id="title"
+               element="input"
+               type="text"
+               label="Title"
+               validators={[VALIDATOR_REQUIRE()]}
+               errorText="Please enter a valid title."
+               onInput={inputHandler}
+            />
 
-            <div className="c-form-blog-input">
-               <label className="c-form-blog-input__label" for="content">
-                  Content
-               </label>
-               <textarea
-                  className="c-form-blog-input__content"
-                  name="content"
-                  id="content"
-                  rows="13"
-               ></textarea>
-            </div>
+            <Input
+               id="content"
+               element="textarea"
+               label="Content"
+               validators={[VALIDATOR_MINLENGTH(5)]}
+               errorText="Please enter a valid content with a minimum of 5 characters"
+               onInput={inputHandler}
+            />
             <div className="c-form-blog__button">
                <div className="c-form-blog__button-holder">
-                  <Button submit type="submit">
+                  <Button submit disabled={!formState.isValid}>
                      Save
                   </Button>
                </div>
