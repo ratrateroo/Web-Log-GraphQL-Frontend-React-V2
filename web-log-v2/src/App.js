@@ -5,6 +5,8 @@ import Users from './user/pages/Users';
 import Blogs from './blogs/pages/Blogs';
 import Blog from './blogs/pages/Blog';
 import CreateBlog from './blogs/pages/CreateBlog';
+import UpdateBlog from './blogs/pages/UpdateBlog';
+
 import UserBlogs from './user/pages/UserBlogs';
 import UserProfile from './user/pages/UserProfile';
 
@@ -53,6 +55,10 @@ const App = () => {
             </Route>
 
             <Route path="/blogs/:blogId" exact>
+               <UpdateBlog title="Update Blog" />
+            </Route>
+
+            <Route path="/:uid/:blogId" exact>
                <Blog title="<Username>'s Blog" />
             </Route>
 
