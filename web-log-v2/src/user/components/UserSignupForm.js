@@ -1,88 +1,118 @@
 import React from 'react';
 
 import './UserSignupForm.css';
+import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
+import { useForm } from '../../shared/hooks/form-hook';
 
 const UserSignupForm = props => {
+   const [formState, inputHandler] = useForm(
+      {
+         username: {
+            value: '',
+            isValid: true,
+         },
+         email: {
+            value: '',
+            isValid: true,
+         },
+         password: {
+            value: '',
+            isValid: true,
+         },
+         firstname: {
+            value: '',
+            isValid: true,
+         },
+         middlename: {
+            value: '',
+            isValid: true,
+         },
+         lastname: {
+            value: '',
+            isValid: true,
+         },
+      },
+      false
+   );
+
+   const signupSubmitHandler = event => {
+      event.preventDefault();
+      console.log(formState.inputs);
+   };
+
    return (
       <div className="c-form">
-         <form action="" className="c-form__body">
-            <div className="c-form-input">
-               <label className="c-form-input__label" for="username">
-                  Username:
-               </label>
-               <input
-                  className="c-form-input__data"
-                  type="text"
-                  id="username"
-                  name="username"
-                  required
-               />
-            </div>
-            <div className="c-form-input">
-               <label className="c-form-input__label" for="email">
-                  Email:
-               </label>
-               <input
-                  className="c-form-input__data"
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-               />
-            </div>
-            <div className="c-form-input">
-               <label className="c-form-input__label" for="password">
-                  Password:
-               </label>
-               <input
-                  className="c-form-input__data"
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-               />
-            </div>
+         <form onSubmit={signupSubmitHandler} className="c-form__body">
+            <Input
+               element="input"
+               id="username"
+               type="text"
+               placeholder="Enter your username here!"
+               label="Username:"
+               validators={[VALIDATOR_REQUIRE()]}
+               errorText="Please enter a valid username."
+               onInput={inputHandler}
+            />
 
-            <div className="c-form-input">
-               <label className="c-form-input__label" for="first-name">
-                  First Name:
-               </label>
-               <input
-                  className="c-form-input__data"
-                  type="text"
-                  id="first-name"
-                  name="first-name"
-                  required
-               />
-            </div>
-            <div className="c-form-input">
-               <label className="c-form-input__label" for="middle-name">
-                  Middle Name:
-               </label>
-               <input
-                  className="c-form-input__data"
-                  type="text"
-                  id="middle-name"
-                  name="middle-name"
-                  required
-               />
-            </div>
-            <div className="c-form-input">
-               <label className="c-form-input__label" for="last-name">
-                  Last Name:
-               </label>
-               <input
-                  className="c-form-input__data"
-                  type="text"
-                  id="last-name"
-                  name="last-name"
-                  required
-               />
-            </div>
+            <Input
+               element="input"
+               id="email"
+               type="email"
+               placeholder="Enter your email here!"
+               label="Email:"
+               validators={[VALIDATOR_REQUIRE()]}
+               errorText="Please enter a valid email."
+               onInput={inputHandler}
+            />
+
+            <Input
+               element="input"
+               id="password"
+               type="password"
+               placeholder="Enter your password here!"
+               label="Password:"
+               validators={[VALIDATOR_MINLENGTH(5)]}
+               errorText="Please enter a valid password with a minimum of 5 characters."
+               onInput={inputHandler}
+            />
+
+            <Input
+               element="input"
+               id="firstname"
+               type="text"
+               placeholder="Enter your firstname here!"
+               label="First Name:"
+               validators={[VALIDATOR_REQUIRE()]}
+               errorText="Please enter a valid firstname."
+               onInput={inputHandler}
+            />
+
+            <Input
+               element="input"
+               id="middlename"
+               type="text"
+               placeholder="Enter your middlename here!"
+               label="Middle Name:"
+               validators={[VALIDATOR_REQUIRE()]}
+               errorText="Please enter a valid middlename."
+               onInput={inputHandler}
+            />
+
+            <Input
+               element="input"
+               id="lastname"
+               type="text"
+               placeholder="Enter your lastname here!"
+               label="Last Name:"
+               validators={[VALIDATOR_REQUIRE()]}
+               errorText="Please enter a valid lastname."
+               onInput={inputHandler}
+            />
 
             <div className="c-form-button">
-               <Button submit type="submit">
+               <Button submit disabled={!formState.isValid}>
                   Sign Up
                </Button>
             </div>
