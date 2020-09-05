@@ -1,12 +1,15 @@
 .o-blog-list__item {
-	width: 25%;
-	height: 50vh;
-	background-color: var(--Deep-Space-Sparcle);
+	width: 15rem;
+	height: 100%;	
 	border: 1px solid var(--Eggshell);
+	margin-bottom: 1rem;	
 }
 
-.c-post:hover {
-	background-color: var(--Sheldon-Blue);
+
+.c-post {
+	
+	
+	background-color: var(--Deep-Space-Sparcle);
 }
 
 .c-post__image {
@@ -18,10 +21,6 @@
 .c-post__image-pic {
 	object-fit: cover;
 	object-position: center;
-}
-
-.c-post__image-pic:hover {
-	transform: scale(0.8);
 }
 
 .c-post__details {

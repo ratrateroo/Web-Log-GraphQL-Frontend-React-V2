@@ -27,7 +27,7 @@ code {
 
 html {
 	font-family: 'Montserrat', sans-serif;
-	outline: 1px solid greenyellow;
+	/* outline: 1px solid greenyellow; */
 	height: 100%;
 	scroll-behavior: smooth;
 }
@@ -45,7 +45,7 @@ h2,
 h3,
 h4,
 p,
-ul[class],
+/* ul[class], */
 ol[class],
 li,
 figure,
