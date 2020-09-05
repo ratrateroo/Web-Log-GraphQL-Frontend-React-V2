@@ -27,7 +27,7 @@ const App = () => {
             </Route>
 
             <Route path="/:userId/blogs" exact>
-               <UserBlogs title="User Profile" />
+               <UserBlogs title="User Blogs" />
             </Route>
 
             <Route path="/:userId/profile" exact>

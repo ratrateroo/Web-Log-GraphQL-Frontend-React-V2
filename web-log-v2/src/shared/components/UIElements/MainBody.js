@@ -29,7 +29,9 @@ const MainBody = props => {
          <main className="o-main-area">
             <section className="o-section-container">
                <div className="o-page-heading">
-                  <Button onClick={openModalHandler}>{props.title}</Button>
+                  <Button heading onClick={openModalHandler}>
+                     {props.title}
+                  </Button>
                </div>
 
                <div className="o-page-body">{props.children}</div>

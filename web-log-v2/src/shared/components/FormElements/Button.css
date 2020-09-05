@@ -41,6 +41,16 @@
 	height: 100%;
 }
 
+/* cancel button */
+.c-form-button__cancel {
+	background-color: white;
+	color: var(--English-Green);
+	border: 2px solid var(--English-Green);
+	width: 100%;	
+	font-size: 0.8rem;
+	height: 100%;
+}
+
 
 
 

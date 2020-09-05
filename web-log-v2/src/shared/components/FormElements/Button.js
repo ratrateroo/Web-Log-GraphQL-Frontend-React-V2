@@ -21,7 +21,7 @@ const Button = props => {
       );
    }
 
-   if (props.onClick) {
+   if (props.heading) {
       return (
          <h1 className="c-page-heading" onClick={props.onClick}>
             {props.children}
@@ -32,6 +32,7 @@ const Button = props => {
       <button
          className={`${props.submit && 'c-form-button__submit'} 
                      ${props.edit && 'c-form-button__edit'}
+                     ${props.cancel && 'c-form-button__cancel'}
                      ${props.delete && 'c-form-button__delete'}
                      `}
          type={props.type}
