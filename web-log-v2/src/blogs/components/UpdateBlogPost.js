@@ -116,20 +116,25 @@ const UpdateBlogPost = props => {
 
    const identifiedBlog = BLOGS.find(b => b.id === blogId);
 
+   if (!identifiedBlog) {
+   }
+
    useEffect(() => {
-      setFormData(
-         {
-            title: {
-               value: identifiedBlog.title,
-               isValid: false,
+      if (identifiedBlog) {
+         setFormData(
+            {
+               title: {
+                  value: identifiedBlog.title,
+                  isValid: false,
+               },
+               content: {
+                  value: identifiedBlog.content,
+                  isValid: false,
+               },
             },
-            content: {
-               value: identifiedBlog.content,
-               isValid: false,
-            },
-         },
-         true
-      );
+            true
+         );
+      }
       setIsLoading(false);
    }, [setFormData, identifiedBlog]);
 
