@@ -163,9 +163,7 @@ const UserBlogList = props => {
                      Actions
                   </div>
                </div>
-               <Button delete onClick={showDeleteWarningHandler}>
-                  Delete
-               </Button>
+
                <ul>
                   {BLOGS.map(blog => (
                      <UserBlogItem
