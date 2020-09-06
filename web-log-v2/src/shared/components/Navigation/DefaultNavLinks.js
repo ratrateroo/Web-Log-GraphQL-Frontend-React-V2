@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { AuthContext } from '../../context/auth-context';
 import './DefaultNavLinks.css';
 
 const NavLinks = props => {
+   const auth = useContext(AuthContext);
+
    return (
       <ul className="c-default-navigation__items">
          <li className="c-default-navigation__item">

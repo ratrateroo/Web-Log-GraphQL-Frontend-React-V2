@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { AuthContext } from '../../context/auth-context';
 import './UserNavLinks.css';
 
 const NavLinks = props => {
+   const auth = useContext(AuthContext);
+
    return (
       <ul className="c-user-navigation__items">
          <li className="c-user-navigation__item">
@@ -22,14 +25,16 @@ const NavLinks = props => {
                Login
             </NavLink>
          </li>
-         <li className="c-user-navigation__item">
-            {/* <a href="../Blogs/Blogs.html" className="c-user-navigation__link">
+         {auth.isLoggedIn && (
+            <li className="c-user-navigation__item">
+               {/* <a href="../Blogs/Blogs.html" className="c-user-navigation__link">
                Logout
             </a> */}
-            <NavLink to="/logout" className="c-default-navigation__link" exact>
-               Logout
-            </NavLink>
-         </li>
+               <NavLink to="/logout" className="c-default-navigation__link" exact>
+                  Logout
+               </NavLink>
+            </li>
+         )}
       </ul>
    );
 };
