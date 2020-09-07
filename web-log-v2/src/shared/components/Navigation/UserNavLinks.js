@@ -15,7 +15,7 @@ const NavLinks = props => {
                   {/* <a href="../Signup/Signup.html" className="c-user-navigation__link">
                Signup
             </a> */}
-                  <NavLink to="/signup" className="c-default-navigation__link" exact>
+                  <NavLink to="/signup" className="c-user-navigation__link" exact>
                      Signup
                   </NavLink>
                </li>
@@ -23,20 +23,20 @@ const NavLinks = props => {
                   {/* <a href="../Login/Login.html" className="c-user-navigation__link">
                Login
             </a> */}
-                  <NavLink to="/login" className="c-default-navigation__link" exact>
+                  <NavLink to="/login" className="c-user-navigation__link" exact>
                      Login
                   </NavLink>
                </li>
             </React.Fragment>
          )}
          {auth.isLoggedIn && (
-            <li className="c-user-navigation__item">
+            <li className="c--navigation__item">
                {/* <a href="../Blogs/Blogs.html" className="c-user-navigation__link">
                Logout
             </a> */}
-               <NavLink to="/logout" className="c-default-navigation__link" exact>
+               <button className="c-user-navigation__link" onClick={auth.logout}>
                   Logout
-               </NavLink>
+               </button>
             </li>
          )}
       </ul>
