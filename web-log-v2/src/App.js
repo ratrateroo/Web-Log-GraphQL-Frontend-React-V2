@@ -21,11 +21,11 @@ import { AuthContext } from './shared/context/auth-context';
 const App = () => {
    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-   const login = useCallBack(() => {
+   const login = useCallback(() => {
       setIsLoggedIn(true);
    }, []);
 
-   const logout = useCallBack(() => {
+   const logout = useCallback(() => {
       setIsLoggedIn(false);
    }, []);
 

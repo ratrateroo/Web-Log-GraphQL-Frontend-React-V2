@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { AuthContext } from '../../context/auth-context';
@@ -9,22 +9,26 @@ const NavLinks = props => {
 
    return (
       <ul className="c-user-navigation__items">
-         <li className="c-user-navigation__item">
-            {/* <a href="../Signup/Signup.html" className="c-user-navigation__link">
+         {!auth.isLoggedIn && (
+            <React.Fragment>
+               <li className="c-user-navigation__item">
+                  {/* <a href="../Signup/Signup.html" className="c-user-navigation__link">
                Signup
             </a> */}
-            <NavLink to="/signup" className="c-default-navigation__link" exact>
-               Signup
-            </NavLink>
-         </li>
-         <li className="c-user-navigation__item">
-            {/* <a href="../Login/Login.html" className="c-user-navigation__link">
+                  <NavLink to="/signup" className="c-default-navigation__link" exact>
+                     Signup
+                  </NavLink>
+               </li>
+               <li className="c-user-navigation__item">
+                  {/* <a href="../Login/Login.html" className="c-user-navigation__link">
                Login
             </a> */}
-            <NavLink to="/login" className="c-default-navigation__link" exact>
-               Login
-            </NavLink>
-         </li>
+                  <NavLink to="/login" className="c-default-navigation__link" exact>
+                     Login
+                  </NavLink>
+               </li>
+            </React.Fragment>
+         )}
          {auth.isLoggedIn && (
             <li className="c-user-navigation__item">
                {/* <a href="../Blogs/Blogs.html" className="c-user-navigation__link">
