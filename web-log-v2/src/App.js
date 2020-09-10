@@ -42,22 +42,31 @@ const App = () => {
                <UpdateBlog title="Update Blog" />
             </Route>
 
+            <Route path="/profile/update/:uid" exact>
+               <UserProfile title="User Update Profile" />
+            </Route>
+
             {
-               //to be edited--------------------------------------------------------------
+               //LoggedIn or not Routes
             }
+
             <Route path="/" exact>
-               <Users title="Users" />
+               <Blogs title="Blogs" />
             </Route>
 
-            <Route path="/blogs/new" exact>
-               <CreateBlog title="Create Blog" />
+            <Route path="/blogs/:uid" exact>
+               <UserBlogs title="User Blogs" />
             </Route>
 
-            <Route path="/blogs/:blogId" exact>
-               <UpdateBlog title="Update Blog" />
+            <Route path="/blog/:bid" exact>
+               <Blog title="<Username>'s Blog" />
             </Route>
 
-            <Route path="/:userId/profile" exact>
+            <Route path="/friends/:uid" exact>
+               <UserFriends title="<Username>'s Friends" />
+            </Route>
+
+            <Route path="/profile/:uid" exact>
                <UserProfile title="User Profile" />
             </Route>
 
@@ -83,15 +92,8 @@ const App = () => {
                <UserFriends title="<Username>'s Friends" />
             </Route>
 
-            {
-               //to be edited----------------------------
-            }
-            <Route path="/" exact>
-               <Users title="Users" />
-            </Route>
-
-            <Route path="/:userId/blogs" exact>
-               <UserBlogs title="User Blogs" />
+            <Route path="/profile/:uid" exact>
+               <UserProfile title="User Profile" />
             </Route>
 
             <Route path="/login" exact>
@@ -101,9 +103,7 @@ const App = () => {
             <Route path="/signup" exact>
                <UserSignup title="User Signup" />
             </Route>
-            <Route path="/blogs" exact>
-               <Blogs title="Blogs" />
-            </Route>
+
             <Redirect to="/login" />
          </Switch>
       );
