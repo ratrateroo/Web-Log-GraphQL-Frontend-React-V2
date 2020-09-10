@@ -1,0 +1,44 @@
+.o-friend-list__item {
+	padding: 0.5rem;
+}
+
+.c-page-heading {
+	color: var(--Cadet-Blue);
+}
+
+.c-mini-user {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 8rem;
+	height: 8rem;
+	background-color: var(--Deep-Space-Sparcle);
+	border: 1px solid var(--Charlston-Green);
+}
+
+.c-mini-user__avatar {
+	height: 3.5rem;
+	width: 3.5rem;
+	border-radius: 50%;
+	
+}
+
+.c-mini-user__avatar-pic {
+	display: block;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.c-mini-user__info {
+	height: 3rem;
+	overflow: hidden;
+}
+
+.c-mini-user__fullname {
+	font-size: 1rem;
+	text-align: center;
+	color: var(--Straw);
+}

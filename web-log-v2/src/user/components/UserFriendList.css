@@ -1,0 +1,7 @@
+
+.o-friend-list {
+	padding: 1rem;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './UserFriends.css';
+import './UserFriend.css';
 
 const UserFriends = props => {
    return (

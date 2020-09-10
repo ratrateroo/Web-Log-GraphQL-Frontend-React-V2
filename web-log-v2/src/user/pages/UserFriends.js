@@ -3,9 +3,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import MainBody from '../../shared/components/UIElements/MainBody';
-import UserFriends from '../components/UserFriends';
+import UserFriendList from '../components/UserFriendList';
 
-const UserFriendList = props => {
+const UserFriends = props => {
    const USERS = [
       {
          id: 'u1',
@@ -37,9 +37,9 @@ const UserFriendList = props => {
    const loadedUser = USERS.filter(user => user.id === userId);
    return (
       <MainBody title={props.title}>
-         <UserFriends users={USERS} />
+         <UserFriendList users={USERS} />
       </MainBody>
    );
 };
 
-export default UserFriendList;
+export default UserFriends;

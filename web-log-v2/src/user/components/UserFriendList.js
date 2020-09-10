@@ -1,9 +1,9 @@
 import React from 'react';
 
 import UserFriend from './UserFriend';
-import './UserFriends.css';
+import './UserFriendList.css';
 
-const UserFriends = props => {
+const UserFriendList = props => {
    return (
       <ul className="o-friend-list">
          {props.users.map(friend => (
@@ -20,4 +20,4 @@ const UserFriends = props => {
    );
 };
 
-export default UserFriends;
+export default UserFriendList;
