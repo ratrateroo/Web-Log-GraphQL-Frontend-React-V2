@@ -17,6 +17,7 @@ import UserSignup from './user/pages/UserSignup';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import MainFooter from './shared/components/UIElements/MainFooter';
 import { AuthContext } from './shared/context/auth-context';
+import UsersList from './user/components/UsersList';
 
 const App = () => {
    const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,6 +54,9 @@ const App = () => {
             <Route path="/" exact>
                <Blogs title="Blogs" />
             </Route>
+            <Route path="/users" exact>
+               <UsersList title="Users" />
+            </Route>
 
             <Route path="/blogs/:uid" exact>
                <UserBlogs title="User Blogs" />
@@ -78,6 +82,9 @@ const App = () => {
          <Switch>
             <Route path="/" exact>
                <Blogs title="Blogs" />
+            </Route>
+            <Route path="/users" exact>
+               <UsersList title="Users" />
             </Route>
 
             <Route path="/blogs/:uid" exact>
