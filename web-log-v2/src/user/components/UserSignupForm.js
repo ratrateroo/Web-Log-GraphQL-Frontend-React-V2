@@ -66,6 +66,10 @@ const UserSignupForm = props => {
          });
 
          const responseData = await response.json();
+         if (!response.ok) {
+            throw new Error(responseData.message);
+         }
+
          console.log(responseData);
          setIsLoading(false);
       } catch (err) {
@@ -75,83 +79,90 @@ const UserSignupForm = props => {
       }
    };
 
+   const errorHandler = () => {
+      setError(null);
+   };
+
    return (
-      <div className="c-form">
-         {isLoading && <LoadingSpinner asOverlay />}
-         <form onSubmit={signupSubmitHandler} className="c-form__body">
-            <Input
-               element="input"
-               id="username"
-               type="text"
-               placeholder="Enter your username here!"
-               label="Username:"
-               validators={[VALIDATOR_REQUIRE()]}
-               errorText="Please enter a valid username."
-               onInput={inputHandler}
-            />
+      <React.Fragment>
+         <ErrorModal error={error} onClear={errorHandler} />
+         <div className="c-form">
+            {isLoading && <LoadingSpinner asOverlay />}
+            <form onSubmit={signupSubmitHandler} className="c-form__body">
+               <Input
+                  element="input"
+                  id="username"
+                  type="text"
+                  placeholder="Enter your username here!"
+                  label="Username:"
+                  validators={[VALIDATOR_REQUIRE()]}
+                  errorText="Please enter a valid username."
+                  onInput={inputHandler}
+               />
 
-            <Input
-               element="input"
-               id="email"
-               type="email"
-               placeholder="Enter your email here!"
-               label="Email:"
-               validators={[VALIDATOR_REQUIRE()]}
-               errorText="Please enter a valid email."
-               onInput={inputHandler}
-            />
+               <Input
+                  element="input"
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email here!"
+                  label="Email:"
+                  validators={[VALIDATOR_REQUIRE()]}
+                  errorText="Please enter a valid email."
+                  onInput={inputHandler}
+               />
 
-            <Input
-               element="input"
-               id="password"
-               type="password"
-               placeholder="Enter your password here!"
-               label="Password:"
-               validators={[VALIDATOR_MINLENGTH(5)]}
-               errorText="Please enter a valid password with a minimum of 5 characters."
-               onInput={inputHandler}
-            />
+               <Input
+                  element="input"
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password here!"
+                  label="Password:"
+                  validators={[VALIDATOR_MINLENGTH(5)]}
+                  errorText="Please enter a valid password with a minimum of 5 characters."
+                  onInput={inputHandler}
+               />
 
-            <Input
-               element="input"
-               id="firstname"
-               type="text"
-               placeholder="Enter your firstname here!"
-               label="First Name:"
-               validators={[VALIDATOR_REQUIRE()]}
-               errorText="Please enter a valid firstname."
-               onInput={inputHandler}
-            />
+               <Input
+                  element="input"
+                  id="firstname"
+                  type="text"
+                  placeholder="Enter your firstname here!"
+                  label="First Name:"
+                  validators={[VALIDATOR_REQUIRE()]}
+                  errorText="Please enter a valid firstname."
+                  onInput={inputHandler}
+               />
 
-            <Input
-               element="input"
-               id="middlename"
-               type="text"
-               placeholder="Enter your middlename here!"
-               label="Middle Name:"
-               validators={[VALIDATOR_REQUIRE()]}
-               errorText="Please enter a valid middlename."
-               onInput={inputHandler}
-            />
+               <Input
+                  element="input"
+                  id="middlename"
+                  type="text"
+                  placeholder="Enter your middlename here!"
+                  label="Middle Name:"
+                  validators={[VALIDATOR_REQUIRE()]}
+                  errorText="Please enter a valid middlename."
+                  onInput={inputHandler}
+               />
 
-            <Input
-               element="input"
-               id="lastname"
-               type="text"
-               placeholder="Enter your lastname here!"
-               label="Last Name:"
-               validators={[VALIDATOR_REQUIRE()]}
-               errorText="Please enter a valid lastname."
-               onInput={inputHandler}
-            />
+               <Input
+                  element="input"
+                  id="lastname"
+                  type="text"
+                  placeholder="Enter your lastname here!"
+                  label="Last Name:"
+                  validators={[VALIDATOR_REQUIRE()]}
+                  errorText="Please enter a valid lastname."
+                  onInput={inputHandler}
+               />
 
-            <div className="c-form-button">
-               <Button submit disabled={!formState.isValid}>
-                  Sign Up
-               </Button>
-            </div>
-         </form>
-      </div>
+               <div className="c-form-button">
+                  <Button submit disabled={!formState.isValid}>
+                     Sign Up
+                  </Button>
+               </div>
+            </form>
+         </div>
+      </React.Fragment>
    );
 };
 
