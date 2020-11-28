@@ -10,7 +10,7 @@ const BlogItem = props => {
                <img className="c-post__image-pic" src={props.image} alt={props.title} />
             </div>
 
-            <div class="c-post__details">
+            <div className="c-post__details">
                <h2 className="c-post__title">{props.title}</h2>
                <h3 className="c-post__author">{props.author}</h3>
             </div>

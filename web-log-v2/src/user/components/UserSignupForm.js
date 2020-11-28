@@ -1,37 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './UserSignupForm.css';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
 
 const UserSignupForm = props => {
-   const [formState, inputHandler] = useForm(
+   const [isLoading, setIsLoading] = useState(false);
+   const [error, setError] = useState();
+
+   const [formState, inputHandler, setFormData] = useForm(
       {
          username: {
             value: '',
-            isValid: true,
+            isValid: false,
          },
          email: {
             value: '',
-            isValid: true,
+            isValid: false,
          },
          password: {
             value: '',
-            isValid: true,
+            isValid: false,
          },
          firstname: {
             value: '',
-            isValid: true,
+            isValid: false,
          },
          middlename: {
             value: '',
-            isValid: true,
+            isValid: false,
          },
          lastname: {
             value: '',
-            isValid: true,
+            isValid: false,
          },
       },
       false
@@ -39,25 +45,39 @@ const UserSignupForm = props => {
 
    const signupSubmitHandler = async event => {
       event.preventDefault();
-      fetch('http://localhost:5000/users/signup', {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-         body: JSON.stringify({
-            username: formState.inputs.name.value,
-            email: formState.inputs.email.value,
-            password: formState.inputs.name.value,
-            firstname: formState.inputs.firstname.value,
-            middlename: formState.inputs.middlename.value,
-            lastname: formState.inputs.lastname.value,
-         }),
-      });
-      console.log(formState.inputs);
+      try {
+         setIsLoading(true);
+         const response = await fetch('http://localhost:5000/users/signup', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+               username: formState.inputs.username.value,
+               password: formState.inputs.password.value,
+               email: formState.inputs.email.value,
+               firstname: formState.inputs.firstname.value,
+               middlename: formState.inputs.middlename.value,
+               lastname: formState.inputs.lastname.value,
+               image: 'profileimagetext',
+               blogs: [{}],
+               friends: [{}],
+            }),
+         });
+
+         const responseData = await response.json();
+         console.log(responseData);
+         setIsLoading(false);
+      } catch (err) {
+         console.log(err);
+         setIsLoading(false);
+         setError(err.message || 'Something went wrong, please try signing up again.');
+      }
    };
 
    return (
       <div className="c-form">
+         {isLoading && <LoadingSpinner asOverlay />}
          <form onSubmit={signupSubmitHandler} className="c-form__body">
             <Input
                element="input"

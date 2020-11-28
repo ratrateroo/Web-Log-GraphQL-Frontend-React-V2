@@ -25,7 +25,15 @@ const UserLoginForm = () => {
       false
    );
 
-   const loginSubmitHandler = event => {
+   // const loginSubmitHandler = event => {
+   //    event.preventDefault();
+   //    console.log(formState.inputs);
+   //    auth.login();
+   // };
+
+   //converted to async await
+   //
+   const loginSubmitHandler = async event => {
       event.preventDefault();
       console.log(formState.inputs);
       auth.login();
