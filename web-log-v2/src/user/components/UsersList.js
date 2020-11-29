@@ -23,8 +23,8 @@ const UsersList = props => {
                firstname={user.firstname}
                middlename={user.middlename}
                lastname={user.lastname}
-               blogs={user.blogs}
-               friends={user.friends}
+               blogs={user.blogs.length}
+               friends={user.friends.length}
             />
          ))}
       </ul>
