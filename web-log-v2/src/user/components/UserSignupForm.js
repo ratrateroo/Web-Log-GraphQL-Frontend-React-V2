@@ -13,7 +13,7 @@ const UserSignupForm = props => {
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState();
 
-   const [formState, inputHandler, setFormData] = useForm(
+   const [formState, inputHandler] = useForm(
       {
          username: {
             value: '',
@@ -71,12 +71,11 @@ const UserSignupForm = props => {
          }
 
          console.log(responseData);
-         setIsLoading(false);
       } catch (err) {
          console.log(err);
-         setIsLoading(false);
          setError(err.message || 'Something went wrong, please try signing up again.');
       }
+      setIsLoading(false);
    };
 
    const errorHandler = () => {

@@ -13,7 +13,7 @@ const UserLoginForm = () => {
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState();
 
-   const [isLoggedInMode, setIsLoggedInMode] = useState(true);
+   //const [isLoggedInMode, setIsLoggedInMode] = useState(true);
 
    const [formState, inputHandler] = useForm(
       {
@@ -76,6 +76,7 @@ const UserLoginForm = () => {
       <React.Fragment>
          <ErrorModal error={error} onClear={errorHandler} />
          <div className="c-form">
+            {isLoading && <LoadingSpinner asOverlay />}
             <form action="" className="c-form__body" onSubmit={loginSubmitHandler}>
                <Input
                   element="input"

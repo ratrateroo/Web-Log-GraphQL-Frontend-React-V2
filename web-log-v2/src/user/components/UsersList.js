@@ -19,9 +19,12 @@ const UsersList = props => {
                key={user.id}
                id={user.id}
                image={user.image}
-               name={user.name}
-               blogCount={user.blogs}
-               friendCount={user.friends}
+               username={user.username}
+               firstname={user.firstname}
+               middlename={user.middlename}
+               lastname={user.lastname}
+               blogs={user.blogs}
+               friends={user.friends}
             />
          ))}
       </ul>
