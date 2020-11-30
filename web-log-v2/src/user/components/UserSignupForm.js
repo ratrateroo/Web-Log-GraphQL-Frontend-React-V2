@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import './UserSignupForm.css';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
@@ -8,10 +7,16 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
+import { useHttpClient } from '../../shared/hooks/http-hook';
+
+import './UserSignupForm.css';
 
 const UserSignupForm = props => {
-   const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState();
+   // already used in custom hook
+   // const [isLoading, setIsLoading] = useState(false);
+   // const [error, setError] = useState();
+
+   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
    const [formState, inputHandler] = useForm(
       {
@@ -45,37 +50,40 @@ const UserSignupForm = props => {
 
    const signupSubmitHandler = async event => {
       event.preventDefault();
-      try {
-         setIsLoading(true);
-         const response = await fetch('http://localhost:5000/users/signup', {
-            method: 'POST',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-               username: formState.inputs.username.value,
-               password: formState.inputs.password.value,
-               email: formState.inputs.email.value,
-               firstname: formState.inputs.firstname.value,
-               middlename: formState.inputs.middlename.value,
-               lastname: formState.inputs.lastname.value,
-               image: 'profileimagetext',
-               blogs: [{}],
-               friends: [{}],
-            }),
-         });
+      //try {
+      //used inside custom hook
+      //setIsLoading(true);
 
-         const responseData = await response.json();
-         if (!response.ok) {
-            throw new Error(responseData.message);
+      const responseData = await sendRequest(
+         'http://localhost:5000/users/signup',
+         'POST',
+         JSON.stringify({
+            username: formState.inputs.username.value,
+            password: formState.inputs.password.value,
+            email: formState.inputs.email.value,
+            firstname: formState.inputs.firstname.value,
+            middlename: formState.inputs.middlename.value,
+            lastname: formState.inputs.lastname.value,
+            image: 'profileimagetext',
+            blogs: [{}],
+            friends: [{}],
+         }),
+         {
+            'Content-Type': 'application/json',
          }
+      );
+      //used inside custom hook
+      // const responseData = await response.json();
+      // if (!response.ok) {
+      //    throw new Error(responseData.message);
+      // }
 
-         console.log(responseData);
-      } catch (err) {
-         console.log(err);
-         setError(err.message || 'Something went wrong, please try signing up again.');
-      }
-      setIsLoading(false);
+      console.log(responseData);
+      // } catch (err) {
+      //    console.log(err);
+      //    setError(err.message || 'Something went wrong, please try signing up again.');
+      // }
+      // setIsLoading(false);
    };
 
    const errorHandler = () => {

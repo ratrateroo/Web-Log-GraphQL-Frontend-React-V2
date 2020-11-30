@@ -33,10 +33,14 @@ export const useHttpClient = () => {
         if (!response.ok) {
             throw new Error(responseData.message);
         }
+        setIsLoading(false);
+        return responseData;
         } catch (err) {
             setError(err.message);
+            setIsLoading(false);
+            //throw error to let the component know something went wrong
+            throw err;
         }
-        setIsLoading(false);
     },
     []);
 
