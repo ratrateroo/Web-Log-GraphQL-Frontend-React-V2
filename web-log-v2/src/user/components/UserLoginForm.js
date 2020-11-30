@@ -64,6 +64,10 @@ const UserLoginForm = () => {
       }
    };
 
+   const errorHandler = () => {
+      clearError();
+   };
+
    return (
       <React.Fragment>
          <ErrorModal error={error} onClear={errorHandler} />

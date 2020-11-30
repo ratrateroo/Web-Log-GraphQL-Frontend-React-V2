@@ -86,13 +86,9 @@ const UserSignupForm = props => {
       // setIsLoading(false);
    };
 
-   const errorHandler = () => {
-      setError(null);
-   };
-
    return (
       <React.Fragment>
-         <ErrorModal error={error} onClear={errorHandler} />
+         <ErrorModal error={error} onClear={clearError} />
          <div className="c-form">
             {isLoading && <LoadingSpinner asOverlay />}
             <form onSubmit={signupSubmitHandler} className="c-form__body">
