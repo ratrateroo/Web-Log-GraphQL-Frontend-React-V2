@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from React;
+import { useState, useCallback, useRef, useEffect } from React;
 
 export const useHttpClient = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +11,9 @@ export const useHttpClient = () => {
     const activeHttpRequests = useRef([]);
 
 
-    
+    //use useCallback to prevent recreation of this function
+    //when the component rerenders
+    //"to prevent infinite loop"
     const sendRequest = useCallback(
         async (url, method = 'GET', body = null, headers = {}) => {
         setIsLoading(true);
@@ -22,7 +24,8 @@ export const useHttpClient = () => {
             const response = await fetch(url, {
             method,
             body,
-            headers
+            headers,
+            signal: httpAbortCtrl.signal
         });
 
         const responseData = await response.json();
@@ -40,6 +43,17 @@ export const useHttpClient = () => {
     const clearError = () => {
         setError(null);
     }
+
+    //useEffect
+    //1. run logic when component rerenders
+    //2. run login when component unmounts
+
+    //run clean up logic
+    useEffect(() => {
+        return () => {
+            activeHttpRequests.current.forEach(abortCtrl => abortCtrl.abort());
+        }
+    }, []);
 
     return { isLoading, error, sendRequest, clearError };
 
