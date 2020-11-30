@@ -5,6 +5,8 @@ import MainBody from '../../shared/components/UIElements/MainBody';
 import image from '../../Images/profile pic.png';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import { useHttpClient } from '../../shared/hooks/http-hook';
+
 const Users = props => {
    // const USERS = [
    //    {
@@ -30,40 +32,38 @@ const Users = props => {
    //    },
    // ];
 
-   const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState();
+   // const [isLoading, setIsLoading] = useState(false);
+   // const [error, setError] = useState();
    const [loadedUsers, setLoadedUsers] = useState();
 
-   useEffect(() => {
-      setIsLoading(true);
+   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-      //use Immediately Invoked Function Expression inside async function
-      //do not use async function inside useEffect
-      const sendRequest = async () => {
-         try {
-            const response = await fetch('http://localhost:5000/users');
+   useEffect(
+      () => {
+         //setIsLoading(true);
 
-            const responseData = await response.json();
-            if (!response.ok) {
-               throw new Error(responseData.message);
+         //use Immediately Invoked Function Expression inside async function
+         //do not use async function inside useEffect
+         const fetchUsers = async () => {
+            try {
+               const responseData = await sendRequest('http://localhost:5000/users');
+
+               console.log(responseData.users);
+               setLoadedUsers(responseData.users);
+            } catch (err) {
+               console.log(err);
             }
-            console.log(responseData.users);
-            setLoadedUsers(responseData.users);
-         } catch (err) {
-            setError(err.message);
-         }
-         setIsLoading(false);
-      };
-      sendRequest();
-   }, []);
-
-   const errorHandler = () => {
-      setError(null);
-   };
+         };
+         fetchUsers();
+      },
+      //added useEffect dependency because sendRequest function that is used
+      //is coming from outside useEffect
+      [sendRequest]
+   );
 
    return (
       <MainBody title={props.title}>
-         <ErrorModal error={error} onClear={errorHandler} />
+         <ErrorModal error={error} onClear={clearError} />
          {isLoading && <LoadingSpinner asOverlay />}
          {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
       </MainBody>
