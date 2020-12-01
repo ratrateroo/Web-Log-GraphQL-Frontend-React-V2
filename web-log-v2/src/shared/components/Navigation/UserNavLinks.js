@@ -30,14 +30,21 @@ const NavLinks = props => {
             </React.Fragment>
          )}
          {auth.isLoggedIn && (
-            <li className="c--navigation__item">
-               {/* <a href="../Blogs/Blogs.html" className="c-user-navigation__link">
+            <React.Fragment>
+               <li className="c-user-navigation__item">
+                  <NavLink to="/blog/new" className="c-user-navigation__link" exact>
+                     Create Blog
+                  </NavLink>
+               </li>
+               <li className="c--navigation__item">
+                  {/* <a href="../Blogs/Blogs.html" className="c-user-navigation__link">
                Logout
             </a> */}
-               <button className="c-user-navigation__link" onClick={auth.logout}>
-                  Logout
-               </button>
-            </li>
+                  <button className="c-user-navigation__link" onClick={auth.logout}>
+                     Logout
+                  </button>
+               </li>
+            </React.Fragment>
          )}
       </ul>
    );
