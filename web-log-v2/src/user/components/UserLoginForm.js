@@ -45,7 +45,7 @@ const UserLoginForm = () => {
       event.preventDefault();
       console.log(formState.inputs);
       try {
-         await sendRequest(
+         const responseData = await sendRequest(
             'http://localhost:5000/users/login',
             'POST',
             JSON.stringify({
@@ -56,7 +56,7 @@ const UserLoginForm = () => {
                'Content-Type': 'application/json',
             }
          );
-         auth.login();
+         auth.login(responseData.user.id);
       } catch (err) {
          //optional catch block
          //all errors has been handled inside the custom hook

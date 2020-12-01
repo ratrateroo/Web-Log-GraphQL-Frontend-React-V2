@@ -19,6 +19,26 @@ const CreateBlogPost = props => {
             value: '',
             isValid: true,
          },
+         category: {
+            value: 'testing',
+            isValid: true,
+         },
+         edited: {
+            value: 'testing',
+            isValid: true,
+         },
+         created: {
+            value: 'testing',
+            isValid: true,
+         },
+         creator: {
+            value: 'testing',
+            isValid: true,
+         },
+         author: {
+            value: 'testing',
+            isValid: true,
+         },
       },
       false
    );
