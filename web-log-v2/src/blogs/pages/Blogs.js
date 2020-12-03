@@ -1,81 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BlogList from '../components/BlogList';
 import MainBody from '../../shared/components/UIElements/MainBody';
 import image from '../../Images/cove view.jpg';
-const Blogs = props => {
-   const BLOGS = [
-      {
-         id: 'b1',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b2',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b3',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b4',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b5',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b6',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b7',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b8',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-      },
 
-      {
-         id: 'b9',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b10',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-      },
-      {
-         id: 'b11',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-      },
-   ];
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+
+import { useHttpClient } from '../../shared/hooks/http-hook';
+const Blogs = props => {
+   const [loadedBlogs, setLoadedBlogs] = useState();
+   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+   // const BLOGS = [
+   //    {
+   //       id: 'b1',
+   //       image: image,
+   //       title: 'The Throne of the Sphinx',
+   //       author: 'Aurora Barnuts',
+   //    },
+
+   // ];
+
+   useEffect(() => {
+      const fetchBlogs = async () => {
+         try {
+            const responseData = await sendRequest(`http://localhost:5000/blogs/all`);
+            setLoadedBlogs(responseData.blogs);
+            console.log(responseData.blogs);
+         } catch (err) {
+            console.log(err);
+         }
+      };
+      fetchBlogs();
+   }, [sendRequest]);
    return (
       <MainBody title={props.title}>
-         <BlogList items={BLOGS} />
+         <ErrorModal error={error} onClear={clearError} />
+         {isLoading && <LoadingSpinner />}
+         {!isLoading && loadedBlogs && <BlogList items={loadedBlogs} />}
       </MainBody>
    );
 };
