@@ -7,6 +7,10 @@ import Button from '../../shared/components/FormElements/Button';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
 
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import { useHttpClient } from '../../shared/hooks/http-hook';
+
 const BLOGS = [
    {
       id: 'b1',
@@ -96,7 +100,9 @@ const BLOGS = [
 ];
 
 const UpdateBlogPost = props => {
-   const [isLoading, setIsLoading] = useState(true);
+   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+   const [loadedBlog, setLoadedBlog] = useState();
 
    const blogId = useParams().blogId;
 
@@ -118,6 +124,8 @@ const UpdateBlogPost = props => {
 
    if (!identifiedBlog) {
    }
+
+   useEffect(() => {}, [sendRequest, blogId]);
 
    useEffect(() => {
       if (identifiedBlog) {
