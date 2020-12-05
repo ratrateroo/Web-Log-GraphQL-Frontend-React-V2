@@ -125,33 +125,36 @@ const UpdateBlogPost = props => {
    if (!identifiedBlog) {
    }
 
-   useEffect(() => {}, [sendRequest, blogId]);
-
    useEffect(() => {
-      if (identifiedBlog) {
-         setFormData(
-            {
-               title: {
-                  value: identifiedBlog.title,
-                  isValid: false,
+      const fetchBlog = async () => {
+         try {
+            const responseData = await sendRequest(`http::localhost:5000/blogs/${blogId}`);
+            setLoadedBlog(responseData.blog);
+            setFormData(
+               {
+                  title: {
+                     value: responseData.blog.title,
+                     isValid: false,
+                  },
+                  content: {
+                     value: responseData.blog.content,
+                     isValid: false,
+                  },
                },
-               content: {
-                  value: identifiedBlog.content,
-                  isValid: false,
-               },
-            },
-            true
-         );
-      }
-      setIsLoading(false);
-   }, [setFormData, identifiedBlog]);
+               true
+            );
+         } catch (error) {
+            console.log(error);
+         }
+      };
+   }, [sendRequest, blogId, setFormData]);
 
    const updateBlogHandler = event => {
       event.preventDefault();
       console.log(formState.inputs);
    };
 
-   if (!identifiedBlog) {
+   if (!identifiedBlog && !error) {
       return (
          <div>
             <h2>Could not find blog!</h2>
@@ -162,15 +165,17 @@ const UpdateBlogPost = props => {
    if (isLoading) {
       return (
          <div>
-            <h2>Loading...</h2>
+            <LoadingSpinner />
          </div>
       );
    }
 
    return (
-      <div className="c-form-blog">
-         <form onSubmit={updateBlogHandler} className="c-form-blog__body">
-            {/* <div className="c-form-blog-input">
+      <React.Fragment>
+         <ErrorModal error={error} onClear={clearError} />
+         <div className="c-form-blog">
+            <form onSubmit={updateBlogHandler} className="c-form-blog__body">
+               {/* <div className="c-form-blog-input">
                <label className="c-form-blog-input__label" for="title">
                   Title
                </label>
@@ -183,19 +188,19 @@ const UpdateBlogPost = props => {
                />
             </div> */}
 
-            <Input
-               id="title"
-               element="input"
-               type="text"
-               label="Title"
-               validators={[VALIDATOR_REQUIRE()]}
-               errorText="Please enter a valid title."
-               onInput={inputHandler}
-               initialValue={formState.inputs.title.value}
-               initialValid={formState.inputs.title.isValid}
-            />
+               <Input
+                  id="title"
+                  element="input"
+                  type="text"
+                  label="Title"
+                  validators={[VALIDATOR_REQUIRE()]}
+                  errorText="Please enter a valid title."
+                  onInput={inputHandler}
+                  initialValue={formState.inputs.title.value}
+                  initialValid={formState.inputs.title.isValid}
+               />
 
-            {/* <div className="c-form-blog-input">
+               {/* <div className="c-form-blog-input">
                <label className="c-form-blog-input__label" for="content">
                   Content
                </label>
@@ -207,26 +212,27 @@ const UpdateBlogPost = props => {
                ></textarea>
             </div> */}
 
-            <Input
-               id="content"
-               element="textarea"
-               label="Content"
-               validators={[VALIDATOR_MINLENGTH(5)]}
-               errorText="Please enter a valid content with a minimum of 5 characters"
-               onInput={inputHandler}
-               initialValue={formState.inputs.content.value}
-               initialValid={formState.inputs.content.isValid}
-            />
+               <Input
+                  id="content"
+                  element="textarea"
+                  label="Content"
+                  validators={[VALIDATOR_MINLENGTH(5)]}
+                  errorText="Please enter a valid content with a minimum of 5 characters"
+                  onInput={inputHandler}
+                  initialValue={formState.inputs.content.value}
+                  initialValid={formState.inputs.content.isValid}
+               />
 
-            <div className="c-form-blog__button">
-               <div className="c-form-blog__button-holder">
-                  <Button submit disabled={!formState.isValid}>
-                     Update
-                  </Button>
+               <div className="c-form-blog__button">
+                  <div className="c-form-blog__button-holder">
+                     <Button submit disabled={!formState.isValid}>
+                        Update
+                     </Button>
+                  </div>
                </div>
-            </div>
-         </form>
-      </div>
+            </form>
+         </div>
+      </React.Fragment>
    );
 };
 
