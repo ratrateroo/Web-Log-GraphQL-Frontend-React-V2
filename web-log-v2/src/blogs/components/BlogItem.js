@@ -6,7 +6,7 @@ import './BlogItem.css';
 const BlogItem = props => {
    return (
       <li className="o-blog-list__item" key={props.id}>
-         <Link to={`/blogs/${props.id}`}>
+         <Link to={`/blogs/${props.id}?title=${props.title}`}>
             <div className="c-post">
                <div className="c-post__image">
                   <img className="c-post__image-pic" src={props.image} alt={props.title} />

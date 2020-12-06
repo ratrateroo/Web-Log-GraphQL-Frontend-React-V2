@@ -19,6 +19,8 @@ import MainFooter from './shared/components/UIElements/MainFooter';
 import { AuthContext } from './shared/context/auth-context';
 import UsersList from './user/components/UsersList';
 
+import TestApp from './testing/pages/TestApp';
+
 const App = () => {
    const [isLoggedIn, setIsLoggedIn] = useState(false);
    const [userId, setUserId] = useState(false);
@@ -73,7 +75,7 @@ const App = () => {
                <UserFriends title="<Username>'s Friends" />
             </Route>
 
-            <Route path="/profile/:uid" exact>
+            <Route path="/profile?uid=:uid" exact>
                <UserProfile title="User Profile" />
             </Route>
 
@@ -85,6 +87,9 @@ const App = () => {
          <Switch>
             <Route path="/" exact>
                <Blogs title="Blogs" />
+            </Route>
+            <Route path="/test" exact>
+               <TestApp />
             </Route>
             <Route path="/users" exact>
                <Users title="Users" />
