@@ -10,11 +10,12 @@ const useQuery = () => {
 };
 
 const UserProfileInfo = props => {
-   const [parameterValue, setParameterValue] = useState('none');
+   const [parameterValue, setParameterValue] = useState();
 
    let query = useQuery();
-
+   console.log('1', query);
    useEffect(() => {
+      console.log('2', parameterValue);
       setParameterValue(query.get('uid'));
    }, [query]);
 
@@ -23,21 +24,23 @@ const UserProfileInfo = props => {
    const [loadedUser, setLoadedUser] = useState();
 
    const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
+   console.log('3', parameterValue);
    useEffect(
       () => {
+         console.log('4', parameterValue);
          //setIsLoading(true);
 
          //use Immediately Invoked Function Expression inside async function
          //do not use async function inside useEffect
          const fetchUsers = async () => {
             try {
+               console.log('5', parameterValue);
                const responseData = await sendRequest(
                   `http://localhost:5000/users/profile/${parameterValue}`
                );
-
-               console.log(responseData.user);
-               setLoadedUser(responseData.user);
+               console.log('data', responseData);
+               //console.log(responseData.user);
+               //setLoadedUser(responseData.user);
             } catch (err) {
                console.log(err);
             }
@@ -49,17 +52,18 @@ const UserProfileInfo = props => {
       [sendRequest]
    );
 
-   console.log(parameterValue);
-   console.log(loadedUser);
+   console.log('6', parameterValue);
+   // console.log(loadedUser);
 
    return (
       <div className="c-user-profile">
+         <h1>{parameterValue}</h1>
          <div className="c-user-profile__image">
             <img className="c-user-profile__image-pic" src={props.image} alt={props.name} />
          </div>
 
          <div className="c-user-profile__info">
-            <h2 className="c-user-profile__info__fullname">{props.userIdFromParam}</h2>
+            <h2 className="c-user-profile__info__fullname">{props.name}</h2>
             <ul className="c-user-profile__info__detail-list">
                <li className="c-user-profile__info__detail-item">Blogs {props.blogs}</li>
                <li className="c-user-profile__info__detail-item">Friends {props.friends}</li>

@@ -6,7 +6,7 @@ import './UserItem.css';
 const UserItem = props => {
    return (
       <li className="o-user-list__item" key={props.id}>
-         <Link to={`profile/:uid?uid=${props.id}`}>
+         <Link to={`profile/${props.id}?uid=${props.id}`}>
             <div className="c-user">
                <div className="c-user__avatar">
                   <img className="c-user__avatar-pic" src={props.image} alt={props.image} />
