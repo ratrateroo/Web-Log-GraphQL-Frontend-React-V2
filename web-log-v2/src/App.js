@@ -75,7 +75,7 @@ const App = () => {
                <UserFriends title="<Username>'s Friends" />
             </Route>
 
-            <Route path="/profile?uid=:uid" exact>
+            <Route path="/profile/:uid" exact>
                <UserProfile title="User Profile" />
             </Route>
 
