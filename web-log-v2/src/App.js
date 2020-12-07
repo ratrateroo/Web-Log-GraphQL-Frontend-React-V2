@@ -20,6 +20,7 @@ import { AuthContext } from './shared/context/auth-context';
 import UsersList from './user/components/UsersList';
 
 import TestApp from './testing/pages/TestApp';
+import TestApp2 from './testing/pages/TestApp2';
 
 const App = () => {
    const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -90,6 +91,10 @@ const App = () => {
             </Route>
             <Route path="/test" exact>
                <TestApp />
+            </Route>
+
+            <Route path="/test2" exact>
+               <TestApp2 />
             </Route>
             <Route path="/users" exact>
                <Users title="Users" />
