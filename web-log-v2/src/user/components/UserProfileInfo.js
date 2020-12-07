@@ -9,7 +9,20 @@ const UserProfileInfo = props => {
    console.log('Start Render'); //=======================================
    let query = new URLSearchParams(useLocation().search);
    const [parameterValue, setParameterValue] = useState(null);
-   const [loadedUser, setLoadedUser] = useState();
+   const [loadedUser, setLoadedUser] = useState({
+      blogs: '',
+      email: '',
+      firstname: '',
+      friends: '',
+      id: '',
+      image: '',
+      lastname: '',
+      middlename: '',
+      password: '',
+      username: '',
+      _id: '',
+      addon: '',
+   });
    const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
    useEffect(
@@ -30,7 +43,7 @@ const UserProfileInfo = props => {
                   );
                   //console.log('responsedata', responseData);
                   //console.log(responseData.user);
-                  setLoadedUser(responseData.user);
+                  setLoadedUser({ ...loadedUser, ...responseData.user });
                }
             } catch (err) {
                console.log(err);
@@ -49,14 +62,22 @@ const UserProfileInfo = props => {
    return (
       <div className="c-user-profile">
          <div className="c-user-profile__image">
-            <img className="c-user-profile__image-pic" src={parameterValue} alt={parameterValue} />
+            <img
+               className="c-user-profile__image-pic"
+               src={loadedUser.image}
+               alt={loadedUser.username}
+            />
          </div>
 
          <div className="c-user-profile__info">
-            <h2 className="c-user-profile__info__fullname">{parameterValue}</h2>
+            <h2 className="c-user-profile__info__fullname">{loadedUser.firstname}</h2>
             <ul className="c-user-profile__info__detail-list">
-               <li className="c-user-profile__info__detail-item">Blogs {parameterValue}</li>
-               <li className="c-user-profile__info__detail-item">Friends {parameterValue}</li>
+               <li className="c-user-profile__info__detail-item">
+                  Blogs {loadedUser.blogs.length}
+               </li>
+               <li className="c-user-profile__info__detail-item">
+                  Friends {loadedUser.friends.length}
+               </li>
             </ul>
          </div>
       </div>
