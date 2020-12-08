@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import './UserBlogItem.css';
 
@@ -31,7 +31,9 @@ const UserBlogItem = props => {
             {auth.userId === uid && (
                <div role="gridcell" className="c-blog-row__cell">
                   <div className="c-action-button">
-                     <Button edit>Edit</Button>
+                     <Link to={`/blog/update/${props.id}`}>
+                        <Button edit>Edit</Button>
+                     </Link>
                      <Button delete onClick={props.onClick}>
                         Delete
                      </Button>

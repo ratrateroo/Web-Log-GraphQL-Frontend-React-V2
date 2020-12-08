@@ -11,101 +11,10 @@ import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
-const BLOGS = [
-   {
-      id: 'b1',
-      image: 'https://source.unsplash.com/1600x900/?beach',
-      title: 'The Throne of the Sphinx',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b2',
-      image: 'https://source.unsplash.com/1600x900/?mountain',
-      title: 'Wizard of Oz',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b3',
-      image: 'https://source.unsplash.com/1600x900/?city',
-      title: 'The Throne of the Sphinx',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b4',
-      image: 'https://source.unsplash.com/1600x900/?space',
-      title: 'Wizard of Oz',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b5',
-      image: 'https://source.unsplash.com/1600x900/?beach',
-      title: 'The Throne of the Sphinx',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b6',
-      image: 'https://source.unsplash.com/1600x900/?mountain',
-      title: 'Wizard of Oz',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b7',
-      image: 'https://source.unsplash.com/1600x900/?city',
-      title: 'The Throne of the Sphinx',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b8',
-      image: 'https://source.unsplash.com/1600x900/?space',
-      title: 'Wizard of Oz',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-
-   {
-      id: 'b9',
-      image: 'https://source.unsplash.com/1600x900/?beach',
-      title: 'The Throne of the Sphinx',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b10',
-      image: 'https://source.unsplash.com/1600x900/?mountain',
-      title: 'Wizard of Oz',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b11',
-      image: 'https://source.unsplash.com/1600x900/?city',
-      title: 'The Throne of the Sphinx',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-   {
-      id: 'b12',
-      image: 'https://source.unsplash.com/1600x900/?space',
-      title: 'Wizard of Oz',
-      author: 'Aurora Barnuts',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing',
-   },
-];
-
-const UpdateBlogPost = props => {
+const UpdateBlogPost = () => {
    const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
    const [loadedBlog, setLoadedBlog] = useState();
-
-   const blogId = useParams().blogId;
-
+   const blogId = useParams().bid;
    const [formState, inputHandler, setFormData] = useForm(
       {
          title: {
@@ -116,29 +25,58 @@ const UpdateBlogPost = props => {
             value: '',
             isValid: false,
          },
+         category: {
+            value: '',
+            isValid: false,
+         },
+         edited: {
+            value: '',
+            isValid: false,
+         },
+         created: {
+            value: '',
+            isValid: false,
+         },
+         author: {
+            value: '',
+            isValid: false,
+         },
       },
       false
    );
 
-   const identifiedBlog = BLOGS.find(b => b.id === blogId);
-
-   if (!identifiedBlog) {
-   }
-
    useEffect(() => {
       const fetchBlog = async () => {
          try {
-            const responseData = await sendRequest(`http::localhost:5000/blogs/${blogId}`);
+            const responseData = await sendRequest(`http://localhost:5000/blogs/${blogId}`);
             setLoadedBlog(responseData.blog);
+
             setFormData(
                {
                   title: {
                      value: responseData.blog.title,
-                     isValid: false,
+                     isValid: true,
                   },
                   content: {
                      value: responseData.blog.content,
-                     isValid: false,
+                     isValid: true,
+                  },
+
+                  category: {
+                     value: responseData.blog.category,
+                     isValid: true,
+                  },
+                  edited: {
+                     value: responseData.blog.edited,
+                     isValid: true,
+                  },
+                  created: {
+                     value: responseData.blog.created,
+                     isValid: true,
+                  },
+                  author: {
+                     value: responseData.blog.author,
+                     isValid: true,
                   },
                },
                true
@@ -147,20 +85,14 @@ const UpdateBlogPost = props => {
             console.log(error);
          }
       };
+      fetchBlog();
    }, [sendRequest, blogId, setFormData]);
+   console.log(loadedBlog);
 
    const updateBlogHandler = event => {
       event.preventDefault();
       console.log(formState.inputs);
    };
-
-   if (!identifiedBlog && !error) {
-      return (
-         <div>
-            <h2>Could not find blog!</h2>
-         </div>
-      );
-   }
 
    if (isLoading) {
       return (
@@ -170,68 +102,53 @@ const UpdateBlogPost = props => {
       );
    }
 
+   if (!loadedBlog && !error) {
+      return (
+         <div>
+            <h2>Could not find blog!</h2>
+         </div>
+      );
+   }
+
    return (
       <React.Fragment>
          <ErrorModal error={error} onClear={clearError} />
-         <div className="c-form-blog">
-            <form onSubmit={updateBlogHandler} className="c-form-blog__body">
-               {/* <div className="c-form-blog-input">
-               <label className="c-form-blog-input__label" for="title">
-                  Title
-               </label>
-               <input
-                  className="c-form-blog-input__title"
-                  type="text"
-                  id="title"
-                  name="title"
-                  required
-               />
-            </div> */}
+         {!isLoading && loadedBlog && (
+            <div className="c-form-blog">
+               <form onSubmit={updateBlogHandler} className="c-form-blog__body">
+                  <Input
+                     id="title"
+                     element="input"
+                     type="text"
+                     label="Title"
+                     validators={[VALIDATOR_REQUIRE()]}
+                     errorText="Please enter a valid title."
+                     onInput={inputHandler}
+                     initialValue={loadedBlog.title}
+                     initialValid={true}
+                  />
 
-               <Input
-                  id="title"
-                  element="input"
-                  type="text"
-                  label="Title"
-                  validators={[VALIDATOR_REQUIRE()]}
-                  errorText="Please enter a valid title."
-                  onInput={inputHandler}
-                  initialValue={formState.inputs.title.value}
-                  initialValid={formState.inputs.title.isValid}
-               />
+                  <Input
+                     id="content"
+                     element="textarea"
+                     label="Content"
+                     validators={[VALIDATOR_MINLENGTH(5)]}
+                     errorText="Please enter a valid content with a minimum of 5 characters"
+                     onInput={inputHandler}
+                     initialValue={loadedBlog.content}
+                     initialValid={true}
+                  />
 
-               {/* <div className="c-form-blog-input">
-               <label className="c-form-blog-input__label" for="content">
-                  Content
-               </label>
-               <textarea
-                  className="c-form-blog-input__content"
-                  name="content"
-                  id="content"
-                  rows="13"
-               ></textarea>
-            </div> */}
-
-               <Input
-                  id="content"
-                  element="textarea"
-                  label="Content"
-                  validators={[VALIDATOR_MINLENGTH(5)]}
-                  errorText="Please enter a valid content with a minimum of 5 characters"
-                  onInput={inputHandler}
-                  initialValue={formState.inputs.content.value}
-                  initialValid={formState.inputs.content.isValid}
-               />
-
-               <div className="c-form-blog__button">
-                  <div className="c-form-blog__button-holder">
-                     <Button submit disabled={!formState.isValid}>
-                        Update
-                     </Button>
+                  <div className="c-form-blog__button">
+                     <div className="c-form-blog__button-holder">
+                        <Button submit disabled={!formState.isValid}>
+                           Update
+                        </Button>
+                     </div>
                   </div>
-               </div>
-            </form>
-         </div>
+               </form>
+            </div>
+         )}
       </React.Fragment>
    );
 };

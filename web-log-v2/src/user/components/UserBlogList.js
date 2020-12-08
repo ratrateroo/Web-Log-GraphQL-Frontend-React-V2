@@ -51,7 +51,6 @@ const UserBlogList = props => {
    const cancelDeleteHandler = () => {
       setShowConfirmModal(false);
    };
-   const headerNames = ['Blog No.', 'Title', 'Category', 'Created', 'Edited', 'Actions'];
 
    return (
       <React.Fragment>
@@ -78,14 +77,6 @@ const UserBlogList = props => {
          <div className="c-blogs-list">
             <div role="grid" className="c-blogs-table">
                <div role="row" className="c-blogs-table__header">
-                  {/* {headerNames.map(headerName => {
-                     return (
-                        <div role="gridcell" className="c-blog-header__cell" key={headerName}>
-                           {headerName}
-                        </div>
-                     );
-                  })} */}
-
                   <div role="gridcell" className="c-blog-header__cell">
                      Blog No.
                   </div>
