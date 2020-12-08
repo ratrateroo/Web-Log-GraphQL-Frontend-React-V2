@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import './UserBlogList.css';
 import image from '../../Images/cove view.jpg';
@@ -9,8 +9,9 @@ import UserBlogItem from './UserBlogItem';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
-
+import { AuthContext } from '../../shared/context/auth-context';
 const UserBlogList = props => {
+   const auth = useContext(AuthContext);
    const { uid } = useParams();
    const BLOGS = [
       {
@@ -101,9 +102,12 @@ const UserBlogList = props => {
                   <div role="gridcell" className="c-blog-header__cell">
                      Edited
                   </div>
-                  <div role="gridcell" className="c-blog-header__cell">
-                     Actions
-                  </div>
+
+                  {auth.isLoggedIn && (
+                     <div role="gridcell" className="c-blog-header__cell">
+                        Actions
+                     </div>
+                  )}
                </div>
 
                <ul>
