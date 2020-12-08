@@ -39,7 +39,7 @@ const UserBlogList = props => {
          }
       };
       fetchBlogById();
-   }, [sendRequest]);
+   }, [sendRequest, uid]);
 
    console.log(loadedBlogs);
 
@@ -111,6 +111,8 @@ const UserBlogList = props => {
                </div>
 
                <ul>
+                  <ErrorModal error={error} onClear={clearError} />
+                  {isLoading && <LoadingSpinner asOverlay />}
                   {loadedBlogs.map(blog => (
                      <UserBlogItem
                         key={blog.id}
