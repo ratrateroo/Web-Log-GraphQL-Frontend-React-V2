@@ -65,7 +65,7 @@ const UserBlogList = props => {
                      Cancel
                   </Button>
 
-                  <Button delete onClick={console.log('Deleting')}>
+                  <Button delete onClick={showDeleteWarningHandler}>
                      Delete
                   </Button>
                </React.Fragment>
