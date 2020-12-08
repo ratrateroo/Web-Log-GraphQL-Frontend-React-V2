@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 
 import './UpdateBlogPost.css';
 import Input from '../../shared/components/FormElements/Input';
@@ -10,11 +10,14 @@ import { useForm } from '../../shared/hooks/form-hook';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import { AuthContext } from '../../shared/context/auth-context';
 
 const UpdateBlogPost = () => {
+   const auth = useContext(AuthContext);
    const { isLoading, error, sendRequest, clearError } = useHttpClient();
    const [loadedBlog, setLoadedBlog] = useState();
    const blogId = useParams().bid;
+   let history = useHistory();
    const [formState, inputHandler, setFormData] = useForm(
       {
          title: {
@@ -87,11 +90,32 @@ const UpdateBlogPost = () => {
       };
       fetchBlog();
    }, [sendRequest, blogId, setFormData]);
-   console.log(loadedBlog);
 
-   const updateBlogHandler = event => {
+   const updateBlogHandler = async event => {
       event.preventDefault();
-      console.log(formState.inputs);
+      console.log('/blogs/' + auth.userId);
+      try {
+         await sendRequest(
+            `http://localhost:5000/blogs/${blogId}`,
+            'PATCH',
+            JSON.stringify({
+               title: formState.inputs.title.value,
+               content: formState.inputs.content.value,
+               category: formState.inputs.category.value,
+               edited: formState.inputs.edited.value,
+               created: formState.inputs.created.value,
+               author: formState.inputs.author.value,
+            }),
+            {
+               'Content-Type': 'application/json',
+            }
+         );
+
+         console.log('/blogs/' + auth.userId);
+         history.push('/blogs/' + auth.userId);
+      } catch (err) {
+         console.log(err);
+      }
    };
 
    if (isLoading) {
@@ -109,7 +133,7 @@ const UpdateBlogPost = () => {
          </div>
       );
    }
-
+   console.log(auth);
    return (
       <React.Fragment>
          <ErrorModal error={error} onClear={clearError} />
