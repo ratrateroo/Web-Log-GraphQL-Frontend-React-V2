@@ -6,7 +6,7 @@ import Button from '../../shared/components/FormElements/Button';
 
 const UserBlogItem = props => {
    return (
-      <li key={props.key}>
+      <li key={props.id}>
          <div role="row" className="c-blogs-table__row">
             <div role="gridcell" className="c-blog-row__cell">
                {props.id}
@@ -22,7 +22,7 @@ const UserBlogItem = props => {
                {props.created}
             </div>
             <div role="gridcell" className="c-blog-row__cell">
-               {props.updated}
+               {props.edited}
             </div>
             <div role="gridcell" className="c-blog-row__cell">
                <div className="c-action-button">

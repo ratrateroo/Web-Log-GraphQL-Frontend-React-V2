@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
@@ -73,7 +73,10 @@ const UserProfileInfo = props => {
             <h2 className="c-user-profile__info__fullname">{loadedUser.firstname}</h2>
             <ul className="c-user-profile__info__detail-list">
                <li className="c-user-profile__info__detail-item">
-                  Blogs {loadedUser.blogs.length}
+                  <Link to={`/blogs`}>TESTING</Link>
+               </li>
+               <li className="c-user-profile__info__detail-item">
+                  <Link to={`/blogs/${loadedUser.id}`}>Blogs {loadedUser.blogs.length}</Link>
                </li>
                <li className="c-user-profile__info__detail-item">
                   Friends {loadedUser.friends.length}

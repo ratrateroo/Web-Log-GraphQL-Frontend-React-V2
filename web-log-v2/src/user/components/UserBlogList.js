@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './UserBlogList.css';
 import image from '../../Images/cove view.jpg';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
 import UserBlogItem from './UserBlogItem';
+
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import { useHttpClient } from '../../shared/hooks/http-hook';
+
 const UserBlogList = props => {
+   const { uid } = useParams();
    const BLOGS = [
       {
          id: 'b1',
@@ -16,98 +22,25 @@ const UserBlogList = props => {
          created: 'Jan-14-12',
          updated: 'Jan-14-12',
       },
-      {
-         id: 'b2',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-      {
-         id: 'b3',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-      {
-         id: 'b4',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-      {
-         id: 'b5',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-      {
-         id: 'b6',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-      {
-         id: 'b7',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-      {
-         id: 'b8',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-
-      {
-         id: 'b9',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-      {
-         id: 'b10',
-         image: image,
-         title: 'Wizard of Oz',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
-      {
-         id: 'b11',
-         image: image,
-         title: 'The Throne of the Sphinx',
-         author: 'Aurora Barnuts',
-         category: 'Javascript',
-         created: 'Jan-14-12',
-         updated: 'Jan-14-12',
-      },
    ];
+   console.log(uid);
+   const [loadedBlogs, setLoadedBlogs] = useState([]);
+   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+   useEffect(() => {
+      const fetchBlogById = async () => {
+         try {
+            const responseData = await sendRequest(`http://localhost:5000/blogs/user/${uid}`);
+            setLoadedBlogs(responseData.blogs);
+            console.log(responseData.blogs);
+         } catch (err) {
+            console.log(err);
+         }
+      };
+      fetchBlogById();
+   }, [sendRequest]);
+
+   console.log(loadedBlogs);
 
    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -117,6 +50,7 @@ const UserBlogList = props => {
    const cancelDeleteHandler = () => {
       setShowConfirmModal(false);
    };
+   const headerNames = ['Blog No.', 'Title', 'Category', 'Created', 'Edited', 'Actions'];
 
    return (
       <React.Fragment>
@@ -143,6 +77,14 @@ const UserBlogList = props => {
          <div className="c-blogs-list">
             <div role="grid" className="c-blogs-table">
                <div role="row" className="c-blogs-table__header">
+                  {/* {headerNames.map(headerName => {
+                     return (
+                        <div role="gridcell" className="c-blog-header__cell" key={headerName}>
+                           {headerName}
+                        </div>
+                     );
+                  })} */}
+
                   <div role="gridcell" className="c-blog-header__cell">
                      Blog No.
                   </div>
@@ -157,7 +99,7 @@ const UserBlogList = props => {
                      Created
                   </div>
                   <div role="gridcell" className="c-blog-header__cell">
-                     Updated
+                     Edited
                   </div>
                   <div role="gridcell" className="c-blog-header__cell">
                      Actions
@@ -165,16 +107,19 @@ const UserBlogList = props => {
                </div>
 
                <ul>
-                  {BLOGS.map(blog => (
+                  {loadedBlogs.map(blog => (
                      <UserBlogItem
                         key={blog.id}
-                        id={blog.id}
-                        image={blog.image}
-                        title={blog.title}
-                        author={blog.author}
-                        category={blog.category}
-                        created={blog.created}
-                        updated={blog.updated}
+                        id={blog.id} //
+                        title={blog.title} //
+                        author={blog.author} //
+                        category={blog.category} //
+                        created={blog.created} //
+                        creator={blog.creator} //
+                        content={blog.content} //
+                        edited={blog.edited} //
+                        comments={blog.comments} //
+                        likes={blog.likes} //
                         onClick={showDeleteWarningHandler}
                      />
                   ))}

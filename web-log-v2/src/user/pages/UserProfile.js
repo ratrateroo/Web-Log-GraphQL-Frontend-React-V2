@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, useParams, useLocation } from 'react-router-dom';
 
 import MainBody from '../../shared/components/UIElements/MainBody';
 import UserProfileInfo from '../components/UserProfileInfo';
@@ -38,9 +37,7 @@ const UserProfile = props => {
 
    return (
       <MainBody title={props.title}>
-         <Router>
-            <UserProfileInfo />
-         </Router>
+         <UserProfileInfo />
       </MainBody>
    );
 };
