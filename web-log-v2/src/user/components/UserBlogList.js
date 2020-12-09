@@ -26,10 +26,11 @@ const UserBlogList = props => {
    ];
    console.log(uid);
    const [loadedBlogs, setLoadedBlogs] = useState([]);
+   const [blogIdToDelete, setBlogIdToDelete] = useState();
    const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
    useEffect(() => {
-      const fetchBlogById = async () => {
+      const fetchBlogByUserId = async () => {
          try {
             const responseData = await sendRequest(`http://localhost:5000/blogs/user/${uid}`);
             setLoadedBlogs(responseData.blogs);
@@ -38,18 +39,30 @@ const UserBlogList = props => {
             console.log(err);
          }
       };
-      fetchBlogById();
+      fetchBlogByUserId();
    }, [sendRequest, uid]);
 
    console.log(loadedBlogs);
 
    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
+   const blogDeletedHandler = deletedBlogId => {
+      setLoadedPlace(prevBlogs => prevBlogs.filter(blog => blog.id !== deletedBlogId));
+   };
+
    const showDeleteWarningHandler = () => {
       setShowConfirmModal(true);
    };
    const cancelDeleteHandler = () => {
       setShowConfirmModal(false);
+   };
+
+   const confirmDeleteHandler = async () => {
+      setShowConfirmModal(false);
+      try {
+         await sendRequest(`http://localhost:5000/api/places/${props.id}`, 'DELETE');
+         props.onDelete(props.id);
+      } catch (err) {}
    };
 
    return (
@@ -64,7 +77,7 @@ const UserBlogList = props => {
                      Cancel
                   </Button>
 
-                  <Button delete onClick={showDeleteWarningHandler}>
+                  <Button delete onClick={confirmDeleteHandler}>
                      Delete
                   </Button>
                </React.Fragment>
@@ -118,6 +131,10 @@ const UserBlogList = props => {
                         comments={blog.comments} //
                         likes={blog.likes} //
                         onClick={showDeleteWarningHandler}
+                        onDeleteBlog={blogDeletedHandler}
+                        deleteBlogId={blogId => {
+                           setBlogIdToDelete(blogId);
+                        }}
                      />
                   ))}
                </ul>
