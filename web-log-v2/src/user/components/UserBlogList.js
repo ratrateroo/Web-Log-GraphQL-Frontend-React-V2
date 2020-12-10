@@ -47,7 +47,7 @@ const UserBlogList = props => {
    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
    const blogDeletedHandler = deletedBlogId => {
-      setLoadedPlace(prevBlogs => prevBlogs.filter(blog => blog.id !== deletedBlogId));
+      setLoadedBlogs(prevBlogs => prevBlogs.filter(blog => blog.id !== deletedBlogId));
    };
 
    const showDeleteWarningHandler = () => {
@@ -59,9 +59,11 @@ const UserBlogList = props => {
 
    const confirmDeleteHandler = async () => {
       setShowConfirmModal(false);
+      console.log('Before Try');
       try {
-         await sendRequest(`http://localhost:5000/api/places/${props.id}`, 'DELETE');
-         props.onDelete(props.id);
+         console.log('Inside Try');
+         await sendRequest(`http://localhost:5000/blogs/${blogIdToDelete}`, 'DELETE');
+         blogDeletedHandler(blogIdToDelete);
       } catch (err) {}
    };
 
@@ -130,16 +132,21 @@ const UserBlogList = props => {
                         edited={blog.edited} //
                         comments={blog.comments} //
                         likes={blog.likes} //
-                        onClick={showDeleteWarningHandler}
+                        //onClick={showDeleteWarningHandler}
                         onDeleteBlog={blogDeletedHandler}
                         deleteBlogId={blogId => {
+                           // setBlogIdToDelete(blogId);
+                           // console.log('Id to delete', blogId);
                            setBlogIdToDelete(blogId);
+                           showDeleteWarningHandler();
                         }}
                      />
                   ))}
                </ul>
             </div>
             <div className="c-form-button">
+               <h2>{blogIdToDelete}</h2>
+               {console.log('Inside Render', blogIdToDelete)}
                <Button submit type="submit">
                   Create New
                </Button>

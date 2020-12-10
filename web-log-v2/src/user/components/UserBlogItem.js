@@ -34,7 +34,15 @@ const UserBlogItem = props => {
                      <Link to={`/blog/update/${props.id}`}>
                         <Button edit>Edit</Button>
                      </Link>
-                     <Button delete onClick={props.onClick}>
+                     {/* <Button delete onClick={props.onClick}>
+                     Delete
+                  </Button> */}
+                     <Button
+                        delete
+                        onClick={e => {
+                           props.deleteBlogId(props.id);
+                        }}
+                     >
                         Delete
                      </Button>
                   </div>
