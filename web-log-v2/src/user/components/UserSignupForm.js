@@ -4,6 +4,7 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
@@ -44,6 +45,10 @@ const UserSignupForm = props => {
             value: '',
             isValid: false,
          },
+         image: {
+            value: null,
+            isValid: false,
+         },
       },
       false
    );
@@ -53,6 +58,8 @@ const UserSignupForm = props => {
       //try {
       //used inside custom hook
       //setIsLoading(true);
+
+      console.log(formState.inputs);
 
       const responseData = await sendRequest(
          'http://localhost:5000/users/signup',
@@ -92,6 +99,7 @@ const UserSignupForm = props => {
          <div className="c-form">
             {isLoading && <LoadingSpinner asOverlay />}
             <form onSubmit={signupSubmitHandler} className="c-form__body">
+               <ImageUpload id="image" onInput={inputHandler} />
                <Input
                   element="input"
                   id="username"
