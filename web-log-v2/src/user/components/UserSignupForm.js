@@ -55,51 +55,50 @@ const UserSignupForm = props => {
 
    const signupSubmitHandler = async event => {
       event.preventDefault();
-      //try {
-      //used inside custom hook
-      //setIsLoading(true);
+      try {
+         //used inside custom hook
+         //setIsLoading(true);
 
-      console.log(formState.inputs);
-      const formData = new FormData();
-      formData.append('username', formState.inputs.username.value);
-      formData.append('password', formState.inputs.password.value);
-      formData.append('email', formState.inputs.email.value);
-      formData.append('firstname', formState.inputs.firstname.value);
-      formData.append('middlename', formState.inputs.middlename.value);
-      formData.append('lastname', formState.inputs.lastname.value);
-      formData.append('image', formState.inputs.image.value);
-      const responseData = await sendRequest(
-         'http://localhost:5000/users/signup',
-         'POST',
+         console.log(formState.inputs);
+         const formData = new FormData();
+         formData.append('username', formState.inputs.username.value);
+         formData.append('password', formState.inputs.password.value);
+         formData.append('email', formState.inputs.email.value);
+         formData.append('firstname', formState.inputs.firstname.value);
+         formData.append('middlename', formState.inputs.middlename.value);
+         formData.append('lastname', formState.inputs.lastname.value);
+         formData.append('image', formState.inputs.image.value);
+         const responseData = await sendRequest(
+            'http://localhost:5000/users/signup',
+            'POST',
 
-         formData
-         // JSON.stringify({
-         //    username: formState.inputs.username.value,
-         //    password: formState.inputs.password.value,
-         //    email: formState.inputs.email.value,
-         //    firstname: formState.inputs.firstname.value,
-         //    middlename: formState.inputs.middlename.value,
-         //    lastname: formState.inputs.lastname.value,
-         //    image: 'profileimagetext',
-         //    blogs: [{}],
-         //    friends: [{}],
-         // }),
-         //formData added header automatically
-         // {
-         //    'Content-Type': 'application/json',
+            formData
+            // JSON.stringify({
+            //    username: formState.inputs.username.value,
+            //    password: formState.inputs.password.value,
+            //    email: formState.inputs.email.value,
+            //    firstname: formState.inputs.firstname.value,
+            //    middlename: formState.inputs.middlename.value,
+            //    lastname: formState.inputs.lastname.value,
+            //    image: 'profileimagetext',
+            //    blogs: [{}],
+            //    friends: [{}],
+            // }),
+            //formData added header automatically
+            // {
+            //    'Content-Type': 'application/json',
+            // }
+         );
+         //used inside custom hook
+         // const responseData = await response.json();
+         // if (!response.ok) {
+         //    throw new Error(responseData.message);
          // }
-      );
-      //used inside custom hook
-      // const responseData = await response.json();
-      // if (!response.ok) {
-      //    throw new Error(responseData.message);
-      // }
 
-      console.log(responseData);
-      // } catch (err) {
-      //    console.log(err);
-      //    setError(err.message || 'Something went wrong, please try signing up again.');
-      // }
+         console.log(responseData);
+      } catch (err) {
+         console.log(err);
+      }
       // setIsLoading(false);
    };
 

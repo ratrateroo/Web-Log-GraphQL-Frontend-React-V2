@@ -64,7 +64,7 @@ const UserProfileInfo = props => {
          <div className="c-user-profile__image">
             <img
                className="c-user-profile__image-pic"
-               src={loadedUser.image}
+               src={`http://localhost:5000/${loadedUser.image}`}
                alt={loadedUser.username}
             />
          </div>
