@@ -108,7 +108,11 @@ const UserSignupForm = props => {
          <div className="c-form">
             {isLoading && <LoadingSpinner asOverlay />}
             <form onSubmit={signupSubmitHandler} className="c-form__body">
-               <ImageUpload id="image" onInput={inputHandler} />
+               <ImageUpload
+                  id="image"
+                  onInput={inputHandler}
+                  errorText={'Please provide an image.'}
+               />
                <Input
                   element="input"
                   id="username"

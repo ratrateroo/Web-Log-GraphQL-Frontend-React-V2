@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './CreateBlogPost.css';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
@@ -80,6 +81,11 @@ const CreateBlogPost = props => {
          <ErrorModal error={error} onClear={clearError} />
          <form onSubmit={createBlogHandler} className="c-form-blog__body">
             {isLoading && <LoadingSpinner asOverlay />}
+            <ImageUpload
+               id={'image'}
+               onInput={inputHandler}
+               errorText={'Please provide an image.'}
+            />
             <Input
                id="title"
                element="input"
