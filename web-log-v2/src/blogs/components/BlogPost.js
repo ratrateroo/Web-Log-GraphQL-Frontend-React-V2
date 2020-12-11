@@ -10,6 +10,10 @@ const BlogPost = props => {
             <h2 className="c-blog__author">{props.author}</h2>
          </div>
          <div className="c-blog__body">
+            <div>
+               <img src={`http://localhost:5000/${props.image}`} />
+            </div>
+
             <div className="c-blog__content">
                <p>{props.content}</p>
             </div>

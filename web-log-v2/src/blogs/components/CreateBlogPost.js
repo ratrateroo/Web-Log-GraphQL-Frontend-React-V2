@@ -42,6 +42,18 @@ const CreateBlogPost = props => {
             value: 'testing',
             isValid: true,
          },
+         image: {
+            value: '',
+            isValid: true,
+         },
+         likes: {
+            value: '0',
+            isValid: true,
+         },
+         comments: {
+            value: '0',
+            isValid: true,
+         },
       },
       false
    );
@@ -51,25 +63,18 @@ const CreateBlogPost = props => {
    const createBlogHandler = async event => {
       event.preventDefault();
       try {
-         await sendRequest(
-            'http://localhost:5000/blogs',
-            'POST',
-            JSON.stringify({
-               title: formState.inputs.title.value,
-               content: formState.inputs.content.value,
-               category: formState.inputs.category.value,
-               edited: formState.inputs.edited.value,
-               created: formState.inputs.created.value,
-               creator: auth.userId,
-               author: formState.inputs.author.value,
-               image: 'testimage',
-               likes: 'asdf',
-               comments: 'asdf',
-            }),
-            {
-               'Content-Type': 'application/json',
-            }
-         );
+         const formData = new FormData();
+         formData.append('title', formState.inputs.title.value);
+         formData.append('content', formState.inputs.content.value);
+         formData.append('category', formState.inputs.category.value);
+         formData.append('edited', formState.inputs.edited.value);
+         formData.append('created', formState.inputs.created.value);
+         formData.append('creator', auth.userId);
+         formData.append('author', auth.userId);
+         formData.append('image', formState.inputs.image.value);
+         formData.append('likes', formState.inputs.likes.value);
+         formData.append('comments', formState.inputs.comments.value);
+         await sendRequest('http://localhost:5000/blogs', 'POST', formData);
          history.push('/');
       } catch (error) {
          console.log(error);
