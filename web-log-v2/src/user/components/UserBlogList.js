@@ -62,7 +62,9 @@ const UserBlogList = props => {
       console.log('Before Try');
       try {
          console.log('Inside Try');
-         await sendRequest(`http://localhost:5000/blogs/${blogIdToDelete}`, 'DELETE');
+         await sendRequest(`http://localhost:5000/blogs/${blogIdToDelete}`, 'DELETE', null, {
+            Authorization: 'Bearer ' + auth.token,
+         });
          blogDeletedHandler(blogIdToDelete);
       } catch (err) {}
    };
