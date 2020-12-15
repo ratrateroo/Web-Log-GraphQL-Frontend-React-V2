@@ -108,6 +108,7 @@ const UpdateBlogPost = () => {
             }),
             {
                'Content-Type': 'application/json',
+               Authorization: 'Bearer ' + auth.token,
             }
          );
 
