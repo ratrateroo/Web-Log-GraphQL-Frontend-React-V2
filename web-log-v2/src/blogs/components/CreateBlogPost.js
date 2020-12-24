@@ -69,7 +69,7 @@ const CreateBlogPost = props => {
          formData.append('category', formState.inputs.category.value);
          formData.append('edited', formState.inputs.edited.value);
          formData.append('created', formState.inputs.created.value);
-         formData.append('creator', auth.userId);
+         //formData.append('creator', auth.userId);
          formData.append('author', auth.userId);
          formData.append('image', formState.inputs.image.value);
          formData.append('likes', formState.inputs.likes.value);
