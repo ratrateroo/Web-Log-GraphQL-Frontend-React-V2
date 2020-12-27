@@ -64,7 +64,7 @@ const UserProfileInfo = props => {
          <div className="c-user-profile__image">
             <img
                className="c-user-profile__image-pic"
-               src={`http://localhost:5000/${loadedUser.image}`}
+               src={`${process.env.REACT_APP_BACKEND_URL}/${loadedUser.image}`}
                alt={loadedUser.username}
             />
          </div>

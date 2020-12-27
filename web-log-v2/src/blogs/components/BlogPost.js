@@ -11,7 +11,7 @@ const BlogPost = props => {
          </div>
          <div className="c-blog__body">
             <div>
-               <img src={`http://localhost:5000/${props.image}`} />
+               <img src={`${process.env.REACT_APP_BACKEND_URL}/${props.image}`} />
             </div>
 
             <div className="c-blog__content">
