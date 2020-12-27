@@ -9,7 +9,7 @@ const BlogItem = props => {
             <div className="c-post__image">
                <img
                   className="c-post__image-pic"
-                  src={`http://localhost:5000/${props.image}`}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/${props.image}`}
                   alt={props.title}
                />
             </div>

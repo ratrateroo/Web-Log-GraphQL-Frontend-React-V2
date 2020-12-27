@@ -24,7 +24,9 @@ const Blogs = props => {
    useEffect(() => {
       const fetchBlogs = async () => {
          try {
-            const responseData = await sendRequest(`http://localhost:5000/blogs/all`);
+            const responseData = await sendRequest(
+               `${process.env.REACT_APP_BACKEND_URL}/blogs/all`
+            );
             setLoadedBlogs(responseData.blogs);
             console.log(responseData.blogs);
          } catch (err) {

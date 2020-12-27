@@ -74,7 +74,7 @@ const CreateBlogPost = props => {
          formData.append('image', formState.inputs.image.value);
          formData.append('likes', formState.inputs.likes.value);
          formData.append('comments', formState.inputs.comments.value);
-         await sendRequest('http://localhost:5000/blogs', 'POST', formData, {
+         await sendRequest(process.env.REACT_APP_BACKEND_URL + '/blogs', 'POST', formData, {
             Authorization: 'Bearer ' + auth.token,
          });
          history.push('/');

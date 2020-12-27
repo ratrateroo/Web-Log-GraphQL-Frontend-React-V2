@@ -96,7 +96,7 @@ const UpdateBlogPost = () => {
       console.log('/blogs/' + auth.userId);
       try {
          await sendRequest(
-            `http://localhost:5000/blogs/${blogId}`,
+            `${process.env.REACT_APP_BACKEND_URL}/blogs/${blogId}`,
             'PATCH',
             JSON.stringify({
                title: formState.inputs.title.value,

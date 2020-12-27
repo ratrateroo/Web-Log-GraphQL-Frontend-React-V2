@@ -39,7 +39,7 @@ const UserProfileInfo = props => {
                   console.log('null value', parameterValue);
                } else {
                   const responseData = await sendRequest(
-                     `http://localhost:5000/users/profile/${parameterValue}`
+                     `${process.env.REACT_APP_BACKEND_URL}/users/profile/${parameterValue}`
                   );
                   //console.log('responsedata', responseData);
                   //console.log(responseData.user);
