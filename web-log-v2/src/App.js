@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
-import Users from './user/pages/Users';
-import Blogs from './blogs/pages/Blogs';
-import Blog from './blogs/pages/Blog';
-import CreateBlog from './blogs/pages/CreateBlog';
-import UpdateBlog from './blogs/pages/UpdateBlog';
+//import Users from './user/pages/Users';
+//import Blogs from './blogs/pages/Blogs';
+//import Blog from './blogs/pages/Blog';
+//import CreateBlog from './blogs/pages/CreateBlog';
+//import UpdateBlog from './blogs/pages/UpdateBlog';
 
-import UserBlogs from './user/pages/UserBlogs';
-import UserProfile from './user/pages/UserProfile';
+//import UserBlogs from './user/pages/UserBlogs';
+//import UserProfile from './user/pages/UserProfile';
 
-import UserFriends from './user/pages/UserFriends';
+//import UserFriends from './user/pages/UserFriends';
 
-import UserLogin from './user/pages/UserLogin';
+//import UserLogin from './user/pages/UserLogin';
 import UserSignup from './user/pages/UserSignup';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import MainFooter from './shared/components/UIElements/MainFooter';
@@ -22,6 +22,17 @@ import UsersList from './user/components/UsersList';
 
 import TestApp from './testing/pages/TestApp';
 import TestApp2 from './testing/pages/TestApp2';
+
+const Users = React.lazy(() => import('./user/pages/Users'));
+const Blogs = React.lazy(() => import('./blogs/pages/Blogs'));
+const Blog = React.lazy(() => import('./blogs/pages/Blog'));
+const CreateBlog = React.lazy(() => import('./blogs/pages/CreateBlog'));
+const UpdateBlog = React.lazy(() => import('./blogs/pages/UpdateBlog'));
+const UserBlogs = React.lazy(() => import('./user/pages/UserBlogs'));
+const UserProfile = React.lazy(() => import('./user/pages/UserProfile'));
+const UserFriends = React.lazy(() => import('./user/pages/UserFriends'));
+const UserLogin = React.lazy(() => import('./user/pages/UserLogin'));
+const UserSignup = React.lazy(() => import('./user/pages/UserSignup'));
 
 const App = () => {
    const { token, login, logout, userId } = useAuth();
