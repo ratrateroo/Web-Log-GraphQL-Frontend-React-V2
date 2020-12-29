@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 //import Users from './user/pages/Users';
@@ -136,7 +136,15 @@ const App = () => {
       >
          <Router>
             <MainNavigation />
-            {routes}
+            <Suspense
+               fallback={
+                  <div>
+                     <LoadingSpinner />
+                  </div>
+               }
+            >
+               {routes}
+            </Suspense>
             <MainFooter>Welcome to the Blog</MainFooter>
          </Router>
       </AuthContext.Provider>
