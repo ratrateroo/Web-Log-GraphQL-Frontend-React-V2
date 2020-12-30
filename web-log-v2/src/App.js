@@ -6,19 +6,17 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 //import Blog from './blogs/pages/Blog';
 //import CreateBlog from './blogs/pages/CreateBlog';
 //import UpdateBlog from './blogs/pages/UpdateBlog';
-
 //import UserBlogs from './user/pages/UserBlogs';
 //import UserProfile from './user/pages/UserProfile';
-
 //import UserFriends from './user/pages/UserFriends';
-
 //import UserLogin from './user/pages/UserLogin';
-import UserSignup from './user/pages/UserSignup';
+//import UserSignup from './user/pages/UserSignup';
+
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import MainFooter from './shared/components/UIElements/MainFooter';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
-import UsersList from './user/components/UsersList';
+import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 
 import TestApp from './testing/pages/TestApp';
 import TestApp2 from './testing/pages/TestApp2';
